@@ -56,8 +56,11 @@ app.use(ipGeo({
 
 Whitelist countries
 
+In order to determine country origin, we need also to specify the geoDB database:
+
 ```
 app.use(ipGeo({
+  geoDB: 'path/to/geodb.mmdb'),
   whiteListCountry: ['US', 'UK', 'DE', 'AT']
 }));
 ```
@@ -66,6 +69,7 @@ Blacklist countries
 
 ```
 app.use(ipGeo({
+  geoDB: 'path/to/geodb.mmdb'),
   blackListCountry: ['CN', 'RU']
 }));
 ```
@@ -74,6 +78,7 @@ Whitelist continents
 
 ```
 app.use(ipGeo({
+  geoDB: 'path/to/geodb.mmdb'),
   whiteListContinent: ['NA', 'EU']
 }));
 ```
@@ -82,6 +87,7 @@ Blacklist continents
 
 ```
 app.use(ipGeo({
+  geoDB: 'path/to/geodb.mmdb'),
   blackListContinent: ['AS']
 }));
 ```
@@ -91,8 +97,10 @@ More Complex example:
 ```
 app.use(ipGeo({
   blackList: ['8.8.8.*'],
+  geoDB: 'path/to/geodb.mmdb'),
   whiteListCountry: ['UK', 'US', ‘FR', 'DE', 'AT'],
-  forbidden: '403 - Custom Forbidden Message'
+  forbidden: '403 - Custom Forbidden Message',
+  development: false
 }));
 ```
 
@@ -110,25 +118,18 @@ app.use(ipGeo({
       }))
 ```
 
+### GeoLite2 Database
 
-```
-app.use(ipGeo({
-  whiteList: ['192.168.0.*', '8.8.8.[0-3]'],
-  blackList: ['8.8.8.*'],
-  whiteListCountry: ['UK', 'US', ‘FR', 'DE', 'AT'],
-  blackListCountry: ['CN', 'RU'],
-  whiteListContinent: ['NA', 'EU'],
-  blackListContinent: ['AS'],
+This middleware works with Maxmind GeoLite2 Free Database (city or country). Check [their website to get the database][geodb-url].
 
-}));
-```
 
 ### Option Reference
 
 | option         | Description | Example |
 | -------------- | --------------------- | ---------------------- |
-| whiteList | Array of IP addresses (or string of single IP address ) | ['192.168.0.*', '8.8.8.[0-3]'] |
-| blackList | Array of IP addresses (or string of single IP address ) | ['8.8.8.*', '1.80.*'] |
+| geoDB | path to GeoLite2 database | 'GeoLite2-City.mmdb' |
+| whiteList | Array of IP addresses (or string of single IP addr) | ['192.168.0.*', '8.8.8.[0-3]'] |
+| blackList | Array of IP addresses (or string of single IP addr) | ['8.8.8.*', '1.80.*'] |
 | whiteListCountry | Array of [ISO 3166-2 country code][iso3166-2-url] (or string of single country-code) | ['US', 'AT'] |
 | blackListCountry | Array of [ISO 3166-2 country code][iso3166-2-url] (or string of single country-code) | ['CN', 'RU'] |
 | whiteListContinent | Array of continent code (or string of single continent-code) | ['EU', 'NA'] |
@@ -221,3 +222,4 @@ Written by Sebastian Hildebrandt [sebhildebrandt](https://github.com/sebhildebra
 
 [daviddm-url]: https://david-dm.org/sebhildebrandt/koa-ip-geo
 [daviddm-img]: https://img.shields.io/david/sebhildebrandt/koa-ip-geo.svg?style=flat-square
+[geodb-url]: http://dev.maxmind.com/geoip/geoip2/geolite2/
