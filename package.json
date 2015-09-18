@@ -3,11 +3,15 @@
   "version": "1.0.0",
   "description": "IP and GeoLocation filter middleware for koa, support whitelist and blacklist.",
   "author": "plusinnovations <hildebrandt@plus-innovations.com> (http://www.plus-innovations.com)",
+  "homepage": "https://github.com/sebhildebrandt/koa-ip-geo",
   "main": "index.js",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/sebhildebrandt/koa-ip-geo"
+  },
+  "bugs": {
+    "url": "https://github.com/sebhildebrandt/koa-ip-geo/issues"
   },
   "keywords": [
     "koa",
@@ -21,5 +25,6 @@
   "dependencies": {
     "debug": "^2.2.0",
     "mmdb-reader": "0.0.4"
-  }
+  },
+  "engineStrict": true
 }
