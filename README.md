@@ -32,7 +32,7 @@ app.listen(3000);
 
 ### Advanced Options
 
-Whiteliste IP address
+##### Whiteliste IP address
 
 ```
 app.use(ipGeo({
@@ -46,7 +46,7 @@ This is the same as the previous example. If you only need to whitelist IP adres
 app.use(ipGeo(['192.168.0.*', '8.8.8.[0-3]']));
 ```
 
-Blacklist IP adresses example
+##### Blacklist IP adresses example
 
 ```
 app.use(ipGeo({
@@ -54,7 +54,7 @@ app.use(ipGeo({
 }));
 ```
 
-Whitelist countries
+##### Whitelist countries
 
 In order to determine country origin, we need also to specify the geoDB database:
 
@@ -65,7 +65,7 @@ app.use(ipGeo({
 }));
 ```
 
-Blacklist countries
+##### Blacklist countries
 
 ```
 app.use(ipGeo({
@@ -74,7 +74,7 @@ app.use(ipGeo({
 }));
 ```
 
-Whitelist continents
+##### Whitelist continents
 
 ```
 app.use(ipGeo({
@@ -83,7 +83,7 @@ app.use(ipGeo({
 }));
 ```
 
-Blacklist continents
+##### Blacklist continents
 
 ```
 app.use(ipGeo({
@@ -92,7 +92,7 @@ app.use(ipGeo({
 }));
 ```
 
-More Complex example:
+##### More Complex example:
 
 ```
 app.use(ipGeo({
@@ -104,7 +104,9 @@ app.use(ipGeo({
 }));
 ```
 
-Example with custom forbidden message:
+##### Custom Messages
+
+Example with custom forbidden message (function):
 
 ```
 forbidden = function (ctx) {
