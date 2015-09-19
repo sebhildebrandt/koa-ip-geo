@@ -147,8 +147,8 @@ app.use(ipGeo({
 | option         | Description | Example |
 | -------------- | --------------------- | ---------------------- |
 | geoDB | path to GeoLite2 database | 'GeoLite2-City.mmdb' |
-| whiteList | Array of IP addresses (or string of single IP addr) | ['192.168.0.*', '8.8.8.[0-3]'] |
-| blackList | Array of IP addresses (or string of single IP addr) | ['8.8.8.*', '1.80.*'] |
+| whiteListIP | Array of IP addresses (or string of single IP addr) | ['192.168.0.*', '8.8.8.[0-3]'] |
+| blackListIP | Array of IP addresses (or string of single IP addr) | ['8.8.8.*', '1.80.*'] |
 | whiteListCountry | Array of [ISO 3166-2 country code][iso3166-2-url] (or string of single country-code) | ['US', 'AT'] |
 | blackListCountry | Array of [ISO 3166-2 country code][iso3166-2-url] (or string of single country-code) | ['CN', 'RU'] |
 | whiteListContinent | Array of continent code (or string of single continent-code) | ['EU', 'NA'] |
@@ -190,6 +190,7 @@ Please use the [ISO 3166-2 country code][iso3166-2-url] like 'US', 'UK', ....
 
 | Version        | Date           | Comment  |
 | -------------- | -------------- | -------- |
+| 1.1.2          | 2015-09-19     | updated DOCs - whileListIP, examles, typos |
 | 1.1.0          | 2015-09-19     | added geoIP data to koa context (as an option) |
 | 1.0.0          | 2015-09-18     | initial release |
 
