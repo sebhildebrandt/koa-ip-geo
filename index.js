@@ -17,6 +17,7 @@ function ip(conf) {
   }
 
   conf.development = conf.development || false;
+  conf.context = conf.context || false;
 
   if (Array.isArray(conf)) {
     conf = {whiteListIP: conf};
@@ -45,7 +46,7 @@ function ip(conf) {
       fs.accessSync(conf.geoDB, fs.R_OK);
       reader = new mmdbReader(conf.geoDB);  
     } catch(ex) {
-      debug((new Date).toUTCString() + ' ERROR - GeoDB file ' + conf.geoDB + ' not found');
+      debug('ERROR - GeoDB file ' + conf.geoDB + ' not found');
     }
   }
 
@@ -57,11 +58,17 @@ function ip(conf) {
       yield next;
     } else {
       let _ip = this.ip;
+      let _city = '-';
       let _country = '-';
       let _continent = '-';
+      let _countryCode = '-';
+      let _continentCode = '-';
+      let _latitude = '-';
+      let _longitude = '-';
 
       let pass = false;
       let handled = false;
+      let data = null;
 
       if (conf.whiteListIP && Array.isArray(conf.whiteListIP)) {
         pass = conf.whiteListIP.some(function (item) {
@@ -77,58 +84,72 @@ function ip(conf) {
         }    
       }
 
+      // get geoData only if needed
+      if (conf.context || ((!handled) && reader && (conf.whiteListCountry || conf.blackListCountry || conf.whiteListContinent || conf.blackListContinent))) {
+        let data = reader.lookup(_ip);
+        if (data) {
+          _city = (data.city && data.city.names && data.city.names.en) ? data.city.names.en : '-'
+          _country = (data.country && data.country.names && data.country.names.en) ? data.country.names.en : '-';
+          _continent = (data.continent && data.continent.names && data.continent.names.en) ? data.continent.names.en : '-';          
+          _countryCode = (data.country && data.country.iso_code) ? data.country.iso_code : '-';
+          _continentCode = (data.continent && data.continent.code) ? data.continent.code : '-';       
+          _latitude = (data.location && data.location.latitude) ? data.location.latitude : '-';
+          _longitude = (data.location && data.location.longitude) ? data.location.longitude : '-';
+        }
+
+        // store it in context, if option is set
+        if (conf.context) {
+          this.geoCity = _city;
+          this.geoCountry = _country;
+          this.geoContinent = _continent;
+          this.geoCountryCode = _countryCode;
+          this.geoContinentCode = _continentCode;
+          this.geoLatitude = _latitude;
+          this.geoLongitude = _longitude;
+        }
+      }
+
       // IP white / blacklisted --> filter by geocoding needed
-      if ((!handled) && (conf.whiteListCountry || conf.blackListCountry || conf.whiteListContinent || conf.blackListContinent)) {
-        if (reader) {
-          let data = reader.lookup(_ip);
-          
-          if (data) {
-            _country = (data.country && data.country.iso_code) ? data.country.iso_code : '';
-            _continent = (data.continent && data.continent.code) ? data.continent.code : '';
+      if (reader && (!handled) && data && (conf.whiteListCountry || conf.blackListCountry || conf.whiteListContinent || conf.blackListContinent)) {
 
-            // try to handle by whiteList / blackList county
-            if (conf.whiteListCountry && Array.isArray(conf.whiteListCountry)) {
-              pass = conf.whiteListCountry.some(function (item) {
-                return RegExp(item).test(_country);
+        // try to handle by whiteList / blackList county
+        if (conf.whiteListCountry && Array.isArray(conf.whiteListCountry)) {
+          pass = conf.whiteListCountry.some(function (item) {
+            return RegExp(item).test(_countryCode);
+          });
+          handled = pass;
+        } else {
+          if (conf.blackListCountry && Array.isArray(conf.blackListCountry)) {
+            pass = !conf.blackListCountry.some(function (item) {
+              return RegExp(item).test(_countryCode);
+            });
+            handled = !pass;
+          }
+        }
+
+        // still not handled (by whiteList / blackList county) -- handle by whiteList / blackList continent
+        if (!handled) {
+          if (conf.whiteListContinent && Array.isArray(conf.whiteListContinent)) {
+            pass = conf.whiteListContinent.some(function (item) {
+              return RegExp(item).test(_continentCode);
+            });
+            handled = pass;
+          } else {
+            if (conf.blackListContinent && Array.isArray(conf.blackListContinent)) {
+              pass = !conf.blackListContinent.some(function (item) {
+                return RegExp(item).test(_continentCode);
               });
-              handled = pass;
-            } else {
-              if (conf.blackListCountry && Array.isArray(conf.blackListCountry)) {
-                pass = !conf.blackListCountry.some(function (item) {
-                  return RegExp(item).test(_country);
-                });
-                handled = !pass;
-              }
-            }
-
-            // still not handled (by whiteList / blackList county) -- handle by whiteList / blackList continent
-            if (!handled) {
-              if (conf.whiteListContinent && Array.isArray(conf.whiteListContinent)) {
-                pass = conf.whiteListContinent.some(function (item) {
-                  return RegExp(item).test(_continent);
-                });
-                handled = pass;
-              } else {
-                if (conf.blackListContinent && Array.isArray(conf.blackListContinent)) {
-                  pass = !conf.blackListContinent.some(function (item) {
-                    return RegExp(item).test(_continent);
-                  });
-                  handled = !pass;
-                }
-              }
+              handled = !pass;
             }
           }
-        } else {
-            pass = true;
-            debug((new Date).toUTCString() + ' ' + _ip + ' ERROR - no GeoDB');
         }
       } 
 
       if (pass) {
-        debug((new Date).toUTCString() + ' ' + _ip + ((_continent != '-') ? ' ' + _continent : '') + ((_country != '-') ? ' ' + _country : '') + ' -> ✓');
+        debug((new Date).toUTCString() + ' ' + _ip + ' ' + _continentCode + ' ' + _countryCode + ' -> ✓');
         yield next;
       } else {
-        debug((new Date).toUTCString() + ' ' + _ip + ((_continent != '-') ? ' ' + _continent : '') + ((_country != '-') ? ' ' + _country : '') + ' -> ×');
+        debug((new Date).toUTCString() + ' ' + _ip + ' ' + _continentCode + ' ' + _countryCode + ' -> ×');
         this.status = 403
         this.body = typeof forbidden === 'function' ? forbidden.call(this, this) : forbidden
         return

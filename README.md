@@ -12,7 +12,7 @@ IP and GeoLocation filter middleware for [koa][koa-url], support whitelist and b
 ### Installation
 
 ```bash
-$ npm install koa-ip-geo
+$ npm install koa-ip-geo -- save
 ```
 
 ### Basic Usage
@@ -23,7 +23,7 @@ var ipGeo = require('koa-ip-geo');
 
 var app = koa();
 
-app.use(ipGeo('192.168.0.*'))
+app.use(ipGeo('192.168.0.*'));
 
 app.use(...);
 app.listen(3000);
@@ -34,9 +34,10 @@ app.listen(3000);
 
 ##### Whiteliste IP address
 
+Like in the Example above, you can provide one lingle IP address (as a string) or an array of addresses:
 ```
 app.use(ipGeo({
-  whiteList: ['192.168.0.*', '8.8.8.[0-3]']
+  whiteList: ['192.168.0.*', '8.8.8.*']
 }));
 ```
 
@@ -60,7 +61,7 @@ In order to determine country origin, we need also to specify the geoDB database
 
 ```
 app.use(ipGeo({
-  geoDB: 'path/to/geodb.mmdb'),
+  geoDB: 'path/to/geodb.mmdb',
   whiteListCountry: ['US', 'UK', 'DE', 'AT']
 }));
 ```
@@ -69,7 +70,7 @@ app.use(ipGeo({
 
 ```
 app.use(ipGeo({
-  geoDB: 'path/to/geodb.mmdb'),
+  geoDB: 'path/to/geodb.mmdb',
   blackListCountry: ['CN', 'RU']
 }));
 ```
@@ -78,7 +79,7 @@ app.use(ipGeo({
 
 ```
 app.use(ipGeo({
-  geoDB: 'path/to/geodb.mmdb'),
+  geoDB: 'path/to/geodb.mmdb',
   whiteListContinent: ['NA', 'EU']
 }));
 ```
@@ -87,7 +88,7 @@ app.use(ipGeo({
 
 ```
 app.use(ipGeo({
-  geoDB: 'path/to/geodb.mmdb'),
+  geoDB: 'path/to/geodb.mmdb',
   blackListContinent: ['AS']
 }));
 ```
@@ -100,7 +101,7 @@ app.use(ipGeo({
   geoDB: 'path/to/geodb.mmdb'),
   whiteListCountry: ['UK', 'US', ‘FR', 'DE', 'AT'],
   forbidden: '403 - Custom Forbidden Message',
-  development: false
+  development: (process.env.NODE_ENV == 'Development')
 }));
 ```
 
@@ -115,14 +116,14 @@ forbidden = function (ctx) {
 }
 
 app.use(ipGeo({
-        whiteList: '192.168.0.*',
-        forbidden: forbidden
-      }))
+  whiteList: '192.168.0.*',
+  forbidden: forbidden
+}))
 ```
 
 ### GeoLite2 Database
 
-This middleware works with Maxmind GeoLite2 Free Database (city or country). Check [their website to get the database][geodb-url].
+> This middleware works with **Maxmind GeoLite2 Free Database** (city or country). We recommend the 'country' version, because it is smaller. Check [their website to get the database][geodb-url].
 
 
 ### Option Reference
@@ -137,6 +138,7 @@ This middleware works with Maxmind GeoLite2 Free Database (city or country). Che
 | whiteListContinent | Array of continent code (or string of single continent-code) | ['EU', 'NA'] |
 | blackListContinent | Array of continent code (or string of single continent-code) | ['AS', 'OC', 'AF'] |
 | forbidden | custom 'forbidden' message (string or function) | '403 - Forbidden' |
+| context | set true, if you need geoIP information in the context | defaults to false |
 | development | if true, no filztering is done | defaults to false |
 
 ### Formats
@@ -147,15 +149,17 @@ Possible Formats:
 - x.x.x.x 	for a specific IP address
 - x.x.x.* 	for a IP range
 - x.x.*.* 	for a IP range
-- x.x.* 	for a IP range also works perfectly
+- x.x.* 	  for a IP range also works perfectly
+- x.x.x.[0-127]   this is also a range of IP addresses.
 
-CIDR notation (e.g. x.x.x.x/18) is not supported at the moment.
+> **Notice:** 
+> CIDR notation (e.g. `x.x.x.x/18`) is not supported at the moment.
 
 If you only pass one single IP adress, you can pass a string instead of an array - like { whiteList: '192.168.0.*' }
 
 ##### Country Codes
 
-Please use the [ISO 3166-2 country code][iso3166-2-url] like 'us', 'uk', ....
+Please use the [ISO 3166-2 country code][iso3166-2-url] like 'US', 'UK', ....
 
 ##### Continent Codes
 
@@ -170,12 +174,13 @@ Please use the [ISO 3166-2 country code][iso3166-2-url] like 'us', 'uk', ....
 
 | Version        | Date           | Comment  |
 | -------------- | -------------- | -------- |
-| 1.0.0          | 2015-09-14     | initial release |
+| 1.1.0          | 2015-09-19     | added geoIP data to koa context (as an option) |
+| 1.0.0          | 2015-09-18     | initial release |
 
 
 ## Comments
 
-If you have ideas or comments, please do not hesitate to contact me.
+If you have ideas or comments, please do not hesitate to contact me. Pull requests and stars are always welcome. For bugs and feature requests, [please create an issue][issue-url].
 
 Sincerely,
 
@@ -184,6 +189,8 @@ Sebastian Hildebrandt, [+innovations](http://www.plus-innovations.com)
 ## Credits
 
 Written by Sebastian Hildebrandt [sebhildebrandt](https://github.com/sebhildebrandt)
+
+This package is heavenly inspired by [koa-ip][koaip-url] and [koa-ip-filter][koaipfilter-url]. Check them out also.
 
 ## License [![MIT license][license-img]][license-url]
 
@@ -217,11 +224,14 @@ Written by Sebastian Hildebrandt [sebhildebrandt](https://github.com/sebhildebra
 [license-url]: https://github.com/sebhildebrandt/koa-ip-geo/blob/master/LICENSE
 [license-img]: https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square
 [npmjs-license]: https://img.shields.io/npm/l/koa-ip-geo.svg?style=flat-square
+[issue-url]: https://github.com/sebhildebrandt/koa-ip-geo/issues/new
 
 [koa-url]: https://github.com/koajs/koa
-
 [iso3166-2-url]: https://en.wikipedia.org/wiki/ISO_3166-2
+[geodb-url]: http://dev.maxmind.com/geoip/geoip2/geolite2/
+[koaip-url]: https://github.com/MangroveTech/koa-ip
+[koaipfilter-url]: https://github.com/tunnckoCore/koa-ip-filter
 
 [daviddm-url]: https://david-dm.org/sebhildebrandt/koa-ip-geo
 [daviddm-img]: https://img.shields.io/david/sebhildebrandt/koa-ip-geo.svg?style=flat-square
-[geodb-url]: http://dev.maxmind.com/geoip/geoip2/geolite2/
+
