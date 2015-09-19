@@ -17,11 +17,19 @@ $ npm install koa-ip-geo -- save
 
 ### Basic Usage
 
+This example has a whitelist for local IP addresses and a whitelist for Austrian IP addresses:
+
 ```
 var koa = require('koa');
 var ipGeo = require('koa-ip-geo');
 
 var app = koa();
+
+app.use(ipGeo({
+  geoDB: 'path/to/geodb.mmdb',
+  whiteListIP: '192.168.0.*',
+  whiteListCountry: ['AT']
+}));
 
 app.use(ipGeo('192.168.0.*'));
 
@@ -34,24 +42,32 @@ app.listen(3000);
 
 ##### Whiteliste IP address
 
-Like in the Example above, you can provide one lingle IP address (as a string) or an array of addresses:
+Very basic IP filtering:
+
 ```
-app.use(ipGeo({
-  whiteList: ['192.168.0.*', '8.8.8.*']
-}));
+app.use(ipGeo('192.168.0.*'));
 ```
 
-This is the same as the previous example. If you only need to whitelist IP adresses, just pass a single IP adress as a string or an array of IP addresses as a parameter. This will be interpretad as a 'whiteList'-parameter.
+Filtering more than one IP address range:
 
 ```
 app.use(ipGeo(['192.168.0.*', '8.8.8.[0-3]']));
+```
+
+>**Notes:**
+> In the previous examples you saw just a single string or an array as a parameter passsed to the middleware. For simplicity, in this case this will be interpreted as a 'whiteList'-parameter. This would be the 'correct' was for specifiing the whitelist-parameter
+
+```
+app.use(ipGeo({
+  whiteListIP: ['192.168.0.*', '8.8.8.*']
+}));
 ```
 
 ##### Blacklist IP adresses example
 
 ```
 app.use(ipGeo({
-  blackList: ['8.8.8.*', '1.80.*'],
+  blackListIP: ['8.8.8.*', '1.80.*'],
 }));
 ```
 
@@ -97,7 +113,7 @@ app.use(ipGeo({
 
 ```
 app.use(ipGeo({
-  blackList: ['8.8.8.*'],
+  blackListIP: ['8.8.8.*'],
   geoDB: 'path/to/geodb.mmdb'),
   whiteListCountry: ['UK', 'US', ‘FR', 'DE', 'AT'],
   forbidden: '403 - Custom Forbidden Message',
@@ -116,7 +132,7 @@ forbidden = function (ctx) {
 }
 
 app.use(ipGeo({
-  whiteList: '192.168.0.*',
+  whiteListIP: '192.168.0.*',
   forbidden: forbidden
 }))
 ```
@@ -155,7 +171,7 @@ Possible Formats:
 > **Notice:** 
 > CIDR notation (e.g. `x.x.x.x/18`) is not supported at the moment.
 
-If you only pass one single IP adress, you can pass a string instead of an array - like { whiteList: '192.168.0.*' }
+If you only pass one single IP adress, you can pass a string instead of an array - like { whiteListIP: '192.168.0.*' }
 
 ##### Country Codes
 
