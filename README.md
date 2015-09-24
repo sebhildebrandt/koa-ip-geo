@@ -55,7 +55,7 @@ app.use(ipGeo(['192.168.0.*', '8.8.8.[0-3]']));
 ```
 
 >**Notes:**
-> In the previous examples you saw just a single string or an array as a parameter passsed to the middleware. For simplicity, in this case this will be interpreted as a 'whiteList'-parameter. This would be the 'correct' was for specifiing the whitelist-parameter
+> In the previous examples you saw just a single string or an array as a parameter passsed to the middleware. For simplicity, in this case this will be interpreted as a 'whiteListIP'-parameter. This would be the 'correct' was for specifiing the whitelist-parameter
 
 ```
 app.use(ipGeo({
@@ -147,12 +147,12 @@ app.use(ipGeo({
 | option         | Description | Example |
 | -------------- | --------------------- | ---------------------- |
 | geoDB | path to GeoLite2 database | 'GeoLite2-City.mmdb' |
-| whiteListIP | Array of IP addresses (or string of single IP addr) | ['192.168.0.*', '8.8.8.[0-3]'] |
-| blackListIP | Array of IP addresses (or string of single IP addr) | ['8.8.8.*', '1.80.*'] |
-| whiteListCountry | Array of [ISO 3166-2 country code][iso3166-2-url] (or string of single country-code) | ['US', 'AT'] |
-| blackListCountry | Array of [ISO 3166-2 country code][iso3166-2-url] (or string of single country-code) | ['CN', 'RU'] |
-| whiteListContinent | Array of continent code (or string of single continent-code) | ['EU', 'NA'] |
-| blackListContinent | Array of continent code (or string of single continent-code) | ['AS', 'OC', 'AF'] |
+| whiteListIP | Array of IP addresses (or space separated string) | ['192.168.0.*', '8.8.8.[0-3]'] |
+| blackListIP | Array of IP addresses (or space separated string) | ['8.8.8.*', '1.80.*'] |
+| whiteListCountry | Array of [ISO 3166-2 country code][iso3166-2-url] (or space separated string) | ['US', 'AT'] |
+| blackListCountry | Array of [ISO 3166-2 country code][iso3166-2-url] (or space separated string) | ['CN', 'RU'] |
+| whiteListContinent | Array of continent code (or space separated string) | ['EU', 'NA'] |
+| blackListContinent | Array of continent code (or space separated string) | ['AS', 'OC', 'AF'] |
 | forbidden | custom 'forbidden' message (string or function) | '403 - Forbidden' |
 | context | set true, if you need geoIP information in the context | defaults to false |
 | development | if true, no filztering is done | defaults to false |
@@ -168,7 +168,7 @@ Possible Formats:
 - x.x.* 	  for a IP range also works perfectly
 - x.x.x.[0-127]   this is also a range of IP addresses.
 
-> **Notice:** 
+> **Notice:**
 > CIDR notation (e.g. `x.x.x.x/18`) is not supported at the moment.
 
 If you only pass one single IP adress, you can pass a string instead of an array - like { whiteListIP: '192.168.0.*' }
@@ -190,9 +190,38 @@ Please use the [ISO 3166-2 country code][iso3166-2-url] like 'US', 'UK', ....
 
 | Version        | Date           | Comment  |
 | -------------- | -------------- | -------- |
+| 1.2.0          | 2015-09-23     | now also space separated string possible |
 | 1.1.2          | 2015-09-19     | updated DOCs - whileListIP, examles, typos |
 | 1.1.0          | 2015-09-19     | added geoIP data to koa context (as an option) |
 | 1.0.0          | 2015-09-18     | initial release |
+
+#### Changes Version 1.2.0
+
+- you can now pass arrays ['192.168.0.*', '8.8.8.*'] as well as space separated strings to each whitelist/blacklist:
+
+```
+app.use(ipGeo({
+  blackListIP: ['192.168.0.*', '8.8.8.*']
+}));
+```
+
+is now the same as
+
+```
+app.use(ipGeo({
+  blackListIP: '192.168.0.* 8.8.8.*'
+}));
+```
+
+- added synonym for 'localhost': IPv4 '127.0.0.1' = IPv6 '::1' = 'localhost' - all three will be handled the same way, you only have to provide ONE of those addresses. E.g.:
+
+```
+app.use(ipGeo({
+  whiteListIP: 'localhost'
+}));
+```
+
+will whitelist '127.0.0.1' and '::1'
 
 
 ## Comments
@@ -251,4 +280,3 @@ This package is heavenly inspired by [koa-ip][koaip-url] and [koa-ip-filter][koa
 
 [daviddm-url]: https://david-dm.org/sebhildebrandt/koa-ip-geo
 [daviddm-img]: https://img.shields.io/david/sebhildebrandt/koa-ip-geo.svg?style=flat-square
-

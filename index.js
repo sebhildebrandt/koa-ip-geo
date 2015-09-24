@@ -3,14 +3,21 @@
 let debug = require('debug')('koa-ip-geo');
 let mmdbReader = require('mmdb-reader');
 let fs = require('fs');
+let tools = require('./tools')
 
-module.exports = ip;
+module.exports = ipGeoFilter;
 
-function ip(conf) {
+function ipGeoFilter(conf) {
   let reader;
+
+  // ---------------------------------
+  // CONFIGURATION
+  // ---------------------------------
+
+  // parameter handling - allows wider range of possible parameter types
   if (typeof conf !== 'object') {
     if (typeof conf === 'string') {
-      conf = {whiteListIP: [conf]};
+      conf = {whiteListIP: conf.split(' ')};
     } else {
       conf = {};
     }
@@ -23,28 +30,35 @@ function ip(conf) {
     conf = {whiteListIP: conf};
   }
   if (conf.whiteListIP && typeof conf.whiteListIP === 'string') {
-    conf.whiteListIP = [conf.whiteListIP];
+    conf.whiteListIP = conf.whiteListIP.split(' ');
+  }
+  if (conf.whiteListIP && Array.isArray(conf.whiteListIP)) {
+      conf.whiteListIP = tools.corrLocalhost(conf.whiteListIP)
   }
   if (conf.blackListIP && typeof conf.blackListIP === 'string') {
-    conf.blackListIP = [conf.blackListIP];
+    conf.blackListIP = conf.blackListIP.split(' ');
+  }
+  if (conf.blackListIP && Array.isArray(conf.blackListIP)) {
+      conf.blackListIP = tools.corrLocalhost(conf.blackListIP)
   }
   if (conf.whiteListCountry && typeof conf.whiteListCountry === 'string') {
-    conf.whiteListCountry = [conf.whiteListCountry];
+    conf.whiteListCountry = conf.whiteListCountry.split(' ');
   }
   if (conf.blackListCountry && typeof conf.blackListCountry === 'string') {
-    conf.blackListCountry = [conf.blackListCountry];
+    conf.blackListCountry = conf.blackListCountry.split(' ');
   }
   if (conf.whiteListContinent && typeof conf.whiteListContinent === 'string') {
-    conf.whiteListContinent = [conf.whiteListContinent];
+    conf.whiteListContinent = conf.whiteListContinent.split(' ');
   }
   if (conf.blackListContinent && typeof conf.blackListContinent === 'string') {
-    conf.blackListContinent = [conf.blackListContinent];
+    conf.blackListContinent = conf.blackListContinent.split(' ');
   }
 
-  if (conf.geoDB && typeof conf.geoDB === 'string') {
+  // loading geoDB (only if needed)
+  if (conf.geoDB && typeof conf.geoDB === 'string' && (conf.context || conf.whiteListCountry || conf.blackListCountry || conf.whiteListContinent || conf.blackListContinent)) {
     try {
       fs.accessSync(conf.geoDB, fs.R_OK);
-      reader = new mmdbReader(conf.geoDB);  
+      reader = new mmdbReader(conf.geoDB);
     } catch(ex) {
       debug('ERROR - GeoDB file ' + conf.geoDB + ' not found');
     }
@@ -52,12 +66,19 @@ function ip(conf) {
 
   var forbidden = conf.forbidden || '403 Forbidden'
 
+  // ---------------------------------
+  // MIDDLEWARE function starts here
+  // ---------------------------------
+
   return function* (next) {
 
     if (conf.development) {
       yield next;
     } else {
       let _ip = this.ip;
+      _ip = tools.corrIP(_ip);
+
+
       let _city = '-';
       let _country = '-';
       let _continent = '-';
@@ -81,7 +102,7 @@ function ip(conf) {
             return RegExp(item).test(_ip);
           });
           handled = !pass;
-        }    
+        }
       }
 
       // get geoData only if needed
@@ -90,9 +111,9 @@ function ip(conf) {
         if (data) {
           _city = (data.city && data.city.names && data.city.names.en) ? data.city.names.en : '-'
           _country = (data.country && data.country.names && data.country.names.en) ? data.country.names.en : '-';
-          _continent = (data.continent && data.continent.names && data.continent.names.en) ? data.continent.names.en : '-';          
+          _continent = (data.continent && data.continent.names && data.continent.names.en) ? data.continent.names.en : '-';
           _countryCode = (data.country && data.country.iso_code) ? data.country.iso_code : '-';
-          _continentCode = (data.continent && data.continent.code) ? data.continent.code : '-';       
+          _continentCode = (data.continent && data.continent.code) ? data.continent.code : '-';
           _latitude = (data.location && data.location.latitude) ? data.location.latitude : '-';
           _longitude = (data.location && data.location.longitude) ? data.location.longitude : '-';
         }
@@ -109,7 +130,7 @@ function ip(conf) {
         }
       }
 
-      // IP white / blacklisted --> filter by geocoding needed
+      // IP white / blacklisted --> filter by geocoding if needed
       if (reader && (!handled) && data && (conf.whiteListCountry || conf.blackListCountry || conf.whiteListContinent || conf.blackListContinent)) {
 
         // try to handle by whiteList / blackList county
@@ -143,7 +164,7 @@ function ip(conf) {
             }
           }
         }
-      } 
+      }
 
       if (pass) {
         debug((new Date).toUTCString() + ' ' + _ip + ' ' + _continentCode + ' ' + _countryCode + ' -> ✓');
