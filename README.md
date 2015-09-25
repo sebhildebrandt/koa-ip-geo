@@ -118,7 +118,7 @@ app.use(ipGeo({
 
 ##### Pass Geo-IP data into context ...
 
-In order to determine country origin, we need also to specify the geoDB database:
+If you need Geo-IP data later in your koa context (this. ...), just set the 'context' option to true.
 
 ```
 app.use(ipGeo({
@@ -135,8 +135,8 @@ app.use(ipGeo({
   let continent = this.geoContinent;          // continent name
   let countrycode = this.geoCountryCode       // country code (ISO_3166-2)
   let continentCode = this.geoContinentCode;  // continent code
-  this.geoLatitude = _latitude;               // latitude
-  this.geoLongitude = _longitude;             // longitude
+  let latitude = this.geoLatitude             // latitude
+  let longitude = this.geoLongitude           // longitude
 ...
 ```
 
