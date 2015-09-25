@@ -135,8 +135,8 @@ app.use(ipGeo({
   let continent = this.geoContinent;          // continent name
   let countrycode = this.geoCountryCode       // country code (ISO_3166-2)
   let continentCode = this.geoContinentCode;  // continent code
-  let latitude = this.geoLatitude             // latitude
-  let longitude = this.geoLongitude           // longitude
+  let latitude = this.geoLatitude;            // latitude
+  let longitude = this.geoLongitude;          // longitude
 ...
 ```
 
