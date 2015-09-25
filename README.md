@@ -31,8 +31,6 @@ app.use(ipGeo({
   whiteListCountry: ['AT']
 }));
 
-app.use(ipGeo('192.168.0.*'));
-
 app.use(...);
 app.listen(3000);
 ```
@@ -51,11 +49,17 @@ app.use(ipGeo('192.168.0.*'));
 Filtering more than one IP address range:
 
 ```
+app.use(ipGeo('192.168.0.* 8.8.8.[0-3]'));
+```
+
+or
+
+```
 app.use(ipGeo(['192.168.0.*', '8.8.8.[0-3]']));
 ```
 
 >**Notes:**
-> In the previous examples you saw just a single string or an array as a parameter passsed to the middleware. For simplicity, in this case this will be interpreted as a 'whiteListIP'-parameter. This would be the 'correct' was for specifiing the whitelist-parameter
+> In the previous examples you saw just a single string or an array as a parameter passed to the middleware. For simplicity, in this case this will be interpreted as a 'whiteListIP'-parameter. Explicitly specifying a 'whiteListIP'-parameter would be the 'correct' and more readable way:
 
 ```
 app.use(ipGeo({
@@ -82,6 +86,9 @@ app.use(ipGeo({
 }));
 ```
 
+>**Notes:**
+> The geoDB database will only be loaded if necessary. So if you specify a database but do not filter by country or continent, the database will not be loaded.
+
 ##### Blacklist countries
 
 ```
@@ -107,6 +114,30 @@ app.use(ipGeo({
   geoDB: 'path/to/geodb.mmdb',
   blackListContinent: ['AS']
 }));
+```
+
+##### Pass Geo-IP data into context ...
+
+In order to determine country origin, we need also to specify the geoDB database:
+
+```
+app.use(ipGeo({
+  geoDB: 'path/to/geodb.mmdb',
+  whiteListCountry: ['US', 'UK', 'DE', 'AT'],
+  context: true
+}));
+
+// you can and then later access geo-ip data in the context of your request:
+
+...
+  let city = this.geoCity;                    // city name
+  let country = this.geoCountry;              // country name
+  let continent = this.geoContinent;          // continent name
+  let countrycode = this.geoCountryCode       // country code (ISO_3166-2)
+  let continentCode = this.geoContinentCode;  // continent code
+  this.geoLatitude = _latitude;               // latitude
+  this.geoLongitude = _longitude;             // longitude
+...
 ```
 
 ##### More Complex example:
@@ -139,7 +170,7 @@ app.use(ipGeo({
 
 ### GeoLite2 Database
 
-> This middleware works with **Maxmind GeoLite2 Free Database** (city or country). We recommend the 'country' version, because it is smaller. Check [their website to get the database][geodb-url].
+> This middleware works with **Maxmind GeoLite2 Free Database** (city or country). We recommend the 'country' version, because it is smaller. [Check their website to get the database][geodb-url].
 
 
 ### Option Reference
@@ -171,8 +202,6 @@ Possible Formats:
 > **Notice:**
 > CIDR notation (e.g. `x.x.x.x/18`) is not supported at the moment.
 
-If you only pass one single IP adress, you can pass a string instead of an array - like { whiteListIP: '192.168.0.*' }
-
 ##### Country Codes
 
 Please use the [ISO 3166-2 country code][iso3166-2-url] like 'US', 'UK', ....
@@ -190,14 +219,15 @@ Please use the [ISO 3166-2 country code][iso3166-2-url] like 'US', 'UK', ....
 
 | Version        | Date           | Comment  |
 | -------------- | -------------- | -------- |
+| 1.2.1          | 2015-09-25     | udated README, more examples, typos, ... |
 | 1.2.0          | 2015-09-23     | now also space separated string possible |
-| 1.1.2          | 2015-09-19     | updated DOCs - whileListIP, examles, typos |
+| 1.1.2          | 2015-09-19     | updated DOCs - whileListIP, examples, typos |
 | 1.1.0          | 2015-09-19     | added geoIP data to koa context (as an option) |
 | 1.0.0          | 2015-09-18     | initial release |
 
 #### Changes Version 1.2.0
 
-- you can now pass arrays ['192.168.0.*', '8.8.8.*'] as well as space separated strings to each whitelist/blacklist:
+- you can now pass arrays as well as space separated strings to each whitelist/blacklist:
 
 ```
 app.use(ipGeo({
@@ -213,7 +243,7 @@ app.use(ipGeo({
 }));
 ```
 
-- added synonym for 'localhost': IPv4 '127.0.0.1' = IPv6 '::1' = 'localhost' - all three will be handled the same way, you only have to provide ONE of those addresses. E.g.:
+- added synonym for 'localhost' = IPv4 '127.0.0.1' = IPv6 '::1' - all three will be handled the same way, you only have to provide ONE of those addresses. E.g.:
 
 ```
 app.use(ipGeo({
@@ -221,7 +251,7 @@ app.use(ipGeo({
 }));
 ```
 
-will whitelist '127.0.0.1' and '::1'
+will whitelist '127.0.0.1' and '::1' and vice versa.
 
 
 ## Comments
