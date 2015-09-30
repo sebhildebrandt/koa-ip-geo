@@ -4,8 +4,9 @@ IP and GeoLocation filter middleware for [koa][koa-url], support whitelist and b
 
   [![NPM Version][npm-image]][npm-url]
   [![NPM Downloads][downloads-image]][downloads-url]
-  [![MIT license][license-img]][license-url]
+  [![Git Issues][issues-img]][issues-url]
   [![deps status][daviddm-img]][daviddm-url]
+  [![MIT license][license-img]][license-url]
 
 ## Quick Start
 
@@ -310,3 +311,6 @@ This package is heavenly inspired by [koa-ip][koaip-url] and [koa-ip-filter][koa
 
 [daviddm-url]: https://david-dm.org/sebhildebrandt/koa-ip-geo
 [daviddm-img]: https://img.shields.io/david/sebhildebrandt/koa-ip-geo.svg?style=flat-square
+
+[issues-img]: https://img.shields.io/github/issues/sebhildebrandt/koa-ip-geo.svg?style=flat-square
+[issues-url]: https://github.com/sebhildebrandt/koa-ip-geo/issues
