@@ -1,9 +1,15 @@
 
-// fix for IPv6 Dotted-quad notation
-exports.corrIP = function(ip) {
+exports.corrIP =function(ip) {
     if (ip.indexOf(':') !== -1 && ip.indexOf('.') !== -1) {
       ip = ip.split(':')
-      ip = ip[ip.length-1];
+      if(ip.length === 2){
+        // return ipv4 base address if port is specified in ctx.ip
+        ip = ip[0];
+      } else {
+        // fix for IPv6 Dotted-quad notation
+        ip = ip[ip.length-1];
+      }
+      
     }
     return(ip);
 }
