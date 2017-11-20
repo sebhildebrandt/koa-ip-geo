@@ -13,14 +13,14 @@ IP and GeoLocation filter middleware for [koa][koa-url], support whitelist and b
 ### Major (breaking) Changes - Version 2
 
 - This new version 2.x.x is adapted for [Koa2][koajs-url] 
-- as it uses the **Async/Await** pattern this new version works only with [node.js][nodejs-url] **v7.6.0** and above.
+- as it uses the **async/await** pattern this new version works only with [node.js][nodejs-url] **v7.6.0** and above.
 
 ## Quick Start
 
 ### Installation
 
 ```bash
-$ npm install koa-ip-geo -- save
+$ npm install koa-ip-geo --save
 ```
 
 You also need the **Maxmind GeoLite2 Free Database** (city or country). We recommend the 'country' version, because it is smaller. [Check their website to get the database][geodb-url].
@@ -128,7 +128,7 @@ app.use(ipGeo({
 
 ##### Pass Geo-IP data into context ...
 
-If you need Geo-IP data later in your koa context (this. ...), just set the 'context' option to true.
+If you need Geo-IP data later in your koa context (ctx. ...), just set the 'context' option to true.
 
 ```js
 app.use(ipGeo({
@@ -150,7 +150,7 @@ app.use(ipGeo({
 ...
 ```
 
-##### More Complex example:
+##### More complex example:
 
 ```js
 app.use(ipGeo({
@@ -162,9 +162,9 @@ app.use(ipGeo({
 }));
 ```
 
-##### Custom Messages
+##### Custom messages
 
-Example with custom forbidden message (function):
+Example with custom forbidden (= rejection) message (function):
 
 ```js
 forbidden = async function (ctx, next) {
@@ -232,6 +232,7 @@ Please use the [ISO 3166-2 country code][iso3166-2-url] like 'US', 'UK', ....
 
 | Version        | Date           | Comment  |
 | -------------- | -------------- | -------- |
+| 2.0.1          | 2017-11-20     | fixed typos README.md |
 | 2.0.0          | 2017-11-20     | made for Koa2, version bump, updated dependencies |
 | 1.2.1          | 2015-09-25     | udated README, more examples, typos, ... |
 | 1.2.0          | 2015-09-23     | now also space separated string possible |
@@ -241,7 +242,7 @@ Please use the [ISO 3166-2 country code][iso3166-2-url] like 'US', 'UK', ....
 
 #### Changes Version 2.0.0
 
-This new version is now for Koa2! 
+This new version is now for Koa2! So this means, this version is a breaking change! Be sure to also use [node.js][nodejs-url] v7.6.0 or above.
 
 #### Changes Version 1.2.0
 
@@ -261,7 +262,7 @@ app.use(ipGeo({
 }));
 ```
 
-- added synonym for 'localhost' = IPv4 '127.0.0.1' = IPv6 '::1' - all three will be handled the same way, you only have to provide ONE of those addresses. E.g.:
+- added synonym for `localhost` = IPv4 `127.0.0.1` = IPv6 `::1` - all three will be handled the same way, you only have to provide ONE of those addresses. E.g.:
 
 ```js
 app.use(ipGeo({
@@ -269,7 +270,7 @@ app.use(ipGeo({
 }));
 ```
 
-will whitelist '127.0.0.1' and '::1' and vice versa.
+will whitelist `127.0.0.1` and `::1` and vice versa.
 
 
 ## Comments
