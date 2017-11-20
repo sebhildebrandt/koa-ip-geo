@@ -1,6 +1,6 @@
 {
   "name": "koa-ip-geo",
-  "version": "1.2.1",
+  "version": "2.0.0",
   "description": "IP and GeoLocation filter middleware for koa, support whitelist and blacklist.",
   "author": "plusinnovations <hildebrandt@plus-innovations.com> (http://www.plus-innovations.com)",
   "homepage": "https://github.com/sebhildebrandt/koa-ip-geo",
@@ -28,6 +28,6 @@
   },
   "engines": {
     "node": ">=7.6.0"
-  },  
+  },
   "engineStrict": true
 }
