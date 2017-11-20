@@ -8,6 +8,13 @@ IP and GeoLocation filter middleware for [koa][koa-url], support whitelist and b
   [![deps status][daviddm-img]][daviddm-url]
   [![MIT license][license-img]][license-url]
 
+## News and Changes
+
+### Major (breaking) Changes - Version 2
+
+- This new version 2.x.x is adapted for [Koa2][koajs-url] 
+- as it uses the **Async/Await** pattern this new version works only with [node.js][nodejs-url] **v7.6.0** and above.
+
 ## Quick Start
 
 ### Installation
@@ -16,15 +23,17 @@ IP and GeoLocation filter middleware for [koa][koa-url], support whitelist and b
 $ npm install koa-ip-geo -- save
 ```
 
+You also need the **Maxmind GeoLite2 Free Database** (city or country). We recommend the 'country' version, because it is smaller. [Check their website to get the database][geodb-url].
+
 ### Basic Usage
 
 This example has a whitelist for local IP addresses and a whitelist for Austrian IP addresses:
 
-```
-var koa = require('koa');
-var ipGeo = require('koa-ip-geo');
+```js
+const Koa = require('koa');
+const ipGeo = require('koa-ip-geo');
 
-var app = koa();
+const app = new Koa();
 
 app.use(ipGeo({
   geoDB: 'path/to/geodb.mmdb',
@@ -43,26 +52,26 @@ app.listen(3000);
 
 Very basic IP filtering:
 
-```
+```js
 app.use(ipGeo('192.168.0.*'));
 ```
 
 Filtering more than one IP address range:
 
-```
+```js
 app.use(ipGeo('192.168.0.* 8.8.8.[0-3]'));
 ```
 
 or
 
-```
+```js
 app.use(ipGeo(['192.168.0.*', '8.8.8.[0-3]']));
 ```
 
 >**Notes:**
 > In the previous examples you saw just a single string or an array as a parameter passed to the middleware. For simplicity, in this case this will be interpreted as a 'whiteListIP'-parameter. Explicitly specifying a 'whiteListIP'-parameter would be the 'correct' and more readable way:
 
-```
+```js
 app.use(ipGeo({
   whiteListIP: ['192.168.0.*', '8.8.8.*']
 }));
@@ -70,7 +79,7 @@ app.use(ipGeo({
 
 ##### Blacklist IP adresses example
 
-```
+```js
 app.use(ipGeo({
   blackListIP: ['8.8.8.*', '1.80.*'],
 }));
@@ -80,7 +89,7 @@ app.use(ipGeo({
 
 In order to determine country origin, we need also to specify the geoDB database:
 
-```
+```js
 app.use(ipGeo({
   geoDB: 'path/to/geodb.mmdb',
   whiteListCountry: ['US', 'UK', 'DE', 'AT']
@@ -92,7 +101,7 @@ app.use(ipGeo({
 
 ##### Blacklist countries
 
-```
+```js
 app.use(ipGeo({
   geoDB: 'path/to/geodb.mmdb',
   blackListCountry: ['CN', 'RU']
@@ -101,7 +110,7 @@ app.use(ipGeo({
 
 ##### Whitelist continents
 
-```
+```js
 app.use(ipGeo({
   geoDB: 'path/to/geodb.mmdb',
   whiteListContinent: ['NA', 'EU']
@@ -110,7 +119,7 @@ app.use(ipGeo({
 
 ##### Blacklist continents
 
-```
+```js
 app.use(ipGeo({
   geoDB: 'path/to/geodb.mmdb',
   blackListContinent: ['AS']
@@ -121,7 +130,7 @@ app.use(ipGeo({
 
 If you need Geo-IP data later in your koa context (this. ...), just set the 'context' option to true.
 
-```
+```js
 app.use(ipGeo({
   geoDB: 'path/to/geodb.mmdb',
   whiteListCountry: ['US', 'UK', 'DE', 'AT'],
@@ -131,25 +140,25 @@ app.use(ipGeo({
 // you can and then later access geo-ip data in the context of your request:
 
 ...
-  let city = this.geoCity;                    // city name
-  let country = this.geoCountry;              // country name
-  let continent = this.geoContinent;          // continent name
-  let countrycode = this.geoCountryCode       // country code (ISO_3166-2)
-  let continentCode = this.geoContinentCode;  // continent code
-  let latitude = this.geoLatitude;            // latitude
-  let longitude = this.geoLongitude;          // longitude
+  let city = ctx.geoCity;                    // city name
+  let country = ctx.geoCountry;              // country name
+  let continent = ctx.geoContinent;          // continent name
+  let countrycode = ctx.geoCountryCode       // country code (ISO_3166-2)
+  let continentCode = ctx.geoContinentCode;  // continent code
+  let latitude = ctx.geoLatitude;            // latitude
+  let longitude = ctx.geoLongitude;          // longitude
 ...
 ```
 
 ##### More Complex example:
 
-```
+```js
 app.use(ipGeo({
   blackListIP: ['8.8.8.*'],
-  geoDB: 'path/to/geodb.mmdb'),
-  whiteListCountry: ['UK', 'US', ‘FR', 'DE', 'AT'],
+  geoDB: 'path/to/geodb.mmdb',
+  whiteListCountry: ['UK', 'US', 'FR', 'DE', 'AT'],
   forbidden: '403 - Custom Forbidden Message',
-  development: (process.env.NODE_ENV == 'Development')
+  development: (process.env.NODE_ENV === 'Development')
 }));
 ```
 
@@ -157,8 +166,8 @@ app.use(ipGeo({
 
 Example with custom forbidden message (function):
 
-```
-forbidden = function (ctx) {
+```js
+forbidden = async function (ctx, next) {
   ctx.set('X-Seriously', 'yes');
   return 'Seriously - No Access';
 }
@@ -172,6 +181,9 @@ app.use(ipGeo({
 ### GeoLite2 Database
 
 > This middleware works with **Maxmind GeoLite2 Free Database** (city or country). We recommend the 'country' version, because it is smaller. [Check their website to get the database][geodb-url].
+> 
+> `koa-ip-geo` loads the entire database file into memory as a single node `Buffer`. It also uses an in-memory cache when reading complex data structures out of this buffer in the interests of performance. So very roughly speaking, you should assume this module will consume `size_of_mmdb_file * 1.25` of memory.
+
 
 
 ### Option Reference
@@ -220,17 +232,22 @@ Please use the [ISO 3166-2 country code][iso3166-2-url] like 'US', 'UK', ....
 
 | Version        | Date           | Comment  |
 | -------------- | -------------- | -------- |
+| 2.0.0          | 2017-11-20     | made for Koa2, version bump, updated dependencies |
 | 1.2.1          | 2015-09-25     | udated README, more examples, typos, ... |
 | 1.2.0          | 2015-09-23     | now also space separated string possible |
 | 1.1.2          | 2015-09-19     | updated DOCs - whileListIP, examples, typos |
 | 1.1.0          | 2015-09-19     | added geoIP data to koa context (as an option) |
 | 1.0.0          | 2015-09-18     | initial release |
 
+#### Changes Version 2.0.0
+
+This new version is now for Koa2! 
+
 #### Changes Version 1.2.0
 
 - you can now pass arrays as well as space separated strings to each whitelist/blacklist:
 
-```
+```js
 app.use(ipGeo({
   blackListIP: ['192.168.0.*', '8.8.8.*']
 }));
@@ -238,7 +255,7 @@ app.use(ipGeo({
 
 is now the same as
 
-```
+```js
 app.use(ipGeo({
   blackListIP: '192.168.0.* 8.8.8.*'
 }));
@@ -246,7 +263,7 @@ app.use(ipGeo({
 
 - added synonym for 'localhost' = IPv4 '127.0.0.1' = IPv6 '::1' - all three will be handled the same way, you only have to provide ONE of those addresses. E.g.:
 
-```
+```js
 app.use(ipGeo({
   whiteListIP: 'localhost'
 }));
@@ -273,7 +290,7 @@ This package is heavenly inspired by [koa-ip][koaip-url] and [koa-ip-filter][koa
 
 >The [`MIT`][license-url] License (MIT)
 >
->Copyright &copy; 2015 Sebastian Hildebrandt, [+innovations](http://www.plus-innovations.com).
+>Copyright &copy; 2017 Sebastian Hildebrandt, [+innovations](http://www.plus-innovations.com).
 >
 >Permission is hereby granted, free of charge, to any person obtaining a copy
 >of this software and associated documentation files (the "Software"), to deal
@@ -305,7 +322,7 @@ This package is heavenly inspired by [koa-ip][koaip-url] and [koa-ip-filter][koa
 
 [koa-url]: https://github.com/koajs/koa
 [iso3166-2-url]: https://en.wikipedia.org/wiki/ISO_3166-2
-[geodb-url]: http://dev.maxmind.com/geoip/geoip2/geolite2/
+[geodb-url]: https://dev.maxmind.com/geoip/geoip2/geolite2/
 [koaip-url]: https://github.com/MangroveTech/koa-ip
 [koaipfilter-url]: https://github.com/tunnckoCore/koa-ip-filter
 
@@ -314,3 +331,6 @@ This package is heavenly inspired by [koa-ip][koaip-url] and [koa-ip-filter][koa
 
 [issues-img]: https://img.shields.io/github/issues/sebhildebrandt/koa-ip-geo.svg?style=flat-square
 [issues-url]: https://github.com/sebhildebrandt/koa-ip-geo/issues
+
+[nodejs-url]: https://nodejs.org/en/
+[koajs-url]: http://koajs.com/
