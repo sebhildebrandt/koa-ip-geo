@@ -232,6 +232,7 @@ Please use the [ISO 3166-2 country code][iso3166-2-url] like 'US', 'UK', ....
 
 | Version        | Date           | Comment  |
 | -------------- | -------------- | -------- |
+| 2.0.2          | 2017-12-23     | removed console.log |
 | 2.0.1          | 2017-11-20     | fixed typos README.md |
 | 2.0.0          | 2017-11-20     | made for Koa2, version bump, updated dependencies |
 | 1.2.1          | 2015-09-25     | udated README, more examples, typos, ... |
