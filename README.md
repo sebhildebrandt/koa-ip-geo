@@ -236,6 +236,7 @@ Please use the [ISO 3166-2 country code][iso3166-2-url] like 'US', 'UK', ....
 
 | Version        | Date           | Comment  |
 | -------------- | -------------- | -------- |
+| 2.0.4          | 2018-11-03     | improved code quality |
 | 2.0.3          | 2018-11-03     | dependencies update, updated docs |
 | 2.0.2          | 2017-12-23     | removed console.log |
 | 2.0.1          | 2017-11-20     | fixed typos README.md |
