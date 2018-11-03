@@ -5,7 +5,11 @@ IP and GeoLocation filter middleware for [koa][koa-url], support whitelist and b
   [![NPM Version][npm-image]][npm-url]
   [![NPM Downloads][downloads-image]][downloads-url]
   [![Git Issues][issues-img]][issues-url]
+  [![Closed Issues][closed-issues-img]][closed-issues-url]
   [![deps status][daviddm-img]][daviddm-url]
+  [![Code Quality: Javascript][lgtm-badge]][lgtm-badge-url]
+  [![Total alerts][lgtm-alerts]][lgtm-alerts-url]
+  [![Caretaker][caretaker-image]][caretaker-url]
   [![MIT license][license-img]][license-url]
 
 ## News and Changes
@@ -232,6 +236,7 @@ Please use the [ISO 3166-2 country code][iso3166-2-url] like 'US', 'UK', ....
 
 | Version        | Date           | Comment  |
 | -------------- | -------------- | -------- |
+| 2.0.3          | 2018-11-03     | dependencies update, updated docs |
 | 2.0.2          | 2017-12-23     | removed console.log |
 | 2.0.1          | 2017-11-20     | fixed typos README.md |
 | 2.0.0          | 2017-11-20     | made for Koa2, version bump, updated dependencies |
@@ -292,7 +297,7 @@ This package is heavenly inspired by [koa-ip][koaip-url] and [koa-ip-filter][koa
 
 >The [`MIT`][license-url] License (MIT)
 >
->Copyright &copy; 2017 Sebastian Hildebrandt, [+innovations](http://www.plus-innovations.com).
+>Copyright &copy; 2018 Sebastian Hildebrandt, [+innovations](http://www.plus-innovations.com).
 >
 >Permission is hereby granted, free of charge, to any person obtaining a copy
 >of this software and associated documentation files (the "Software"), to deal
@@ -333,6 +338,17 @@ This package is heavenly inspired by [koa-ip][koaip-url] and [koa-ip-filter][koa
 
 [issues-img]: https://img.shields.io/github/issues/sebhildebrandt/koa-ip-geo.svg?style=flat-square
 [issues-url]: https://github.com/sebhildebrandt/koa-ip-geo/issues
+[closed-issues-img]: https://img.shields.io/github/issues-closed-raw/sebhildebrandt/koa-ip-geo.svg?style=flat-square
+[closed-issues-url]: https://github.com/sebhildebrandt/koa-ip-geo/issues?q=is%3Aissue+is%3Aclosed
+
 
 [nodejs-url]: https://nodejs.org/en/
 [koajs-url]: http://koajs.com/
+
+[lgtm-badge]: https://img.shields.io/lgtm/grade/javascript/g/sebhildebrandt/koa-ip-geo.svg?style=flat-square
+[lgtm-badge-url]: https://lgtm.com/projects/g/sebhildebrandt/koa-ip-geo/context:javascript
+[lgtm-alerts]: https://img.shields.io/lgtm/alerts/g/sebhildebrandt/koa-ip-geo.svg?style=flat-square
+[lgtm-alerts-url]: https://lgtm.com/projects/g/sebhildebrandt/koa-ip-geo/alerts
+
+[caretaker-url]: https://github.com/sebhildebrandt
+[caretaker-image]: https://img.shields.io/badge/caretaker-sebhildebrandt-blue.svg?style=flat-square

@@ -13,6 +13,9 @@
   "bugs": {
     "url": "https://github.com/sebhildebrandt/koa-ip-geo/issues"
   },
+  "files": [
+    "lib/"
+  ],
   "keywords": [
     "koa",
     "ip",
@@ -23,8 +26,8 @@
     "middleware"
   ],
   "dependencies": {
-    "debug": "^3.1.0",
-    "mmdb-reader": "^1.1.0"
+    "debug": "^4.1.0",
+    "mmdb-reader": "^1.2.0"
   },
   "engines": {
     "node": ">=7.6.0"
