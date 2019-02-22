@@ -5,6 +5,7 @@
   "author": "plusinnovations <hildebrandt@plus-innovations.com> (http://www.plus-innovations.com)",
   "homepage": "https://github.com/sebhildebrandt/koa-ip-geo",
   "main": "lib/index.js",
+  "types": "./lib/index.d.ts",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -18,9 +19,11 @@
   ],
   "keywords": [
     "koa",
+    "koa2",
     "ip",
     "geo",
     "geolocation",
+    "geoblocking",
     "whitelist",
     "blacklist",
     "middleware"
