@@ -16,7 +16,7 @@ IP and GeoLocation filter middleware for [koa][koa-url], support whitelist and b
 
 ### Major (breaking) Changes - Version 2
 
-- This new version 2.x.x is adapted for [Koa2][koajs-url] 
+- This new version 2.x.x is adapted for [Koa2][koajs-url]
 - as it uses the **async/await** pattern this new version works only with [node.js][nodejs-url] **v7.6.0** and above.
 
 ## Quick Start
@@ -185,7 +185,7 @@ app.use(ipGeo({
 ### GeoLite2 Database
 
 > This middleware works with **Maxmind GeoLite2 Free Database** (city or country). We recommend the 'country' version, because it is smaller. [Check their website to get the database][geodb-url].
-> 
+>
 > `koa-ip-geo` loads the entire database file into memory as a single node `Buffer`. It also uses an in-memory cache when reading complex data structures out of this buffer in the interests of performance. So very roughly speaking, you should assume this module will consume `size_of_mmdb_file * 1.25` of memory.
 
 
@@ -236,6 +236,7 @@ Please use the [ISO 3166-2 country code][iso3166-2-url] like 'US', 'UK', ....
 
 | Version        | Date           | Comment  |
 | -------------- | -------------- | -------- |
+| 2.1.0          | 2019-02-22     | added typescript definitions |
 | 2.0.4          | 2018-11-03     | improved code quality |
 | 2.0.3          | 2018-11-03     | dependencies update, updated docs |
 | 2.0.2          | 2017-12-23     | removed console.log |
