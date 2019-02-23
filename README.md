@@ -236,6 +236,8 @@ Please use the [ISO 3166-2 country code][iso3166-2-url] like 'US', 'UK', ....
 
 | Version        | Date           | Comment  |
 | -------------- | -------------- | -------- |
+| 2.1.2          | 2019-02-23     | typescript definitions adapted |
+| 2.1.1          | 2019-02-22     | typescript definitions modification |
 | 2.1.0          | 2019-02-22     | added typescript definitions |
 | 2.0.4          | 2018-11-03     | improved code quality |
 | 2.0.3          | 2018-11-03     | dependencies update, updated docs |
