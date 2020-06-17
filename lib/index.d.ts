@@ -5,12 +5,12 @@
 export namespace KoaIpGeo {
   interface Configuration {
     geoDB?: string;
-    whiteListIP?: string | Array<string>;
-    blackListIP?: string | Array<string>;
-    whiteListCountry?: string;
-    blackListCountry?: string;
-    whiteListContinent?: string;
-    blackListContinent?: string;
+    allowIP?: string | Array<string>;
+    blockIP?: string | Array<string>;
+    allowCountry?: string;
+    blockCountry?: string;
+    allowContinent?: string;
+    blockContinent?: string;
     forbidden?: (ctx?: any, next?: any) => void;
     development?: boolean;
     context?: boolean;

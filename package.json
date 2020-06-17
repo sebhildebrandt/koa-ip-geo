@@ -1,7 +1,7 @@
 {
   "name": "koa-ip-geo",
   "version": "2.1.2",
-  "description": "IP and GeoLocation filter middleware for koa, support whitelist and blacklist.",
+  "description": "IP and GeoLocation filter middleware for koa, support allow lists and block lists.",
   "author": "plusinnovations <hildebrandt@plus-innovations.com> (http://www.plus-innovations.com)",
   "homepage": "https://github.com/sebhildebrandt/koa-ip-geo",
   "main": "lib/index.js",
@@ -26,6 +26,7 @@
     "geoblocking",
     "whitelist",
     "blacklist",
+    "block",
     "middleware"
   ],
   "dependencies": {

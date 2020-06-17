@@ -1,6 +1,6 @@
 # koa-ip-geo
 
-IP and GeoLocation filter middleware for [koa][koa-url], support whitelist and blacklist.
+IP and GeoLocation filter middleware for [koa][koa-url], support allow lists and block lists.
 
   [![NPM Version][npm-image]][npm-url]
   [![NPM Downloads][downloads-image]][downloads-url]
@@ -31,7 +31,7 @@ You also need the **Maxmind GeoLite2 Free Database** (city or country). We recom
 
 ### Basic Usage
 
-This example has a whitelist for local IP addresses and a whitelist for Austrian IP addresses:
+This example has a allow for local IP addresses and a allow for Austrian IP addresses:
 
 ```js
 const Koa = require('koa');
@@ -41,8 +41,8 @@ const app = new Koa();
 
 app.use(ipGeo({
   geoDB: 'path/to/geodb.mmdb',
-  whiteListIP: '192.168.0.*',
-  whiteListCountry: ['AT']
+  allowIP: '192.168.0.*',
+  allowCountry: ['AT']
 }));
 
 app.use(...);
@@ -52,7 +52,7 @@ app.listen(3000);
 
 ### Advanced Options
 
-##### Whiteliste IP address
+##### Allow IP address
 
 Very basic IP filtering:
 
@@ -73,60 +73,60 @@ app.use(ipGeo(['192.168.0.*', '8.8.8.[0-3]']));
 ```
 
 >**Notes:**
-> In the previous examples you saw just a single string or an array as a parameter passed to the middleware. For simplicity, in this case this will be interpreted as a 'whiteListIP'-parameter. Explicitly specifying a 'whiteListIP'-parameter would be the 'correct' and more readable way:
+> In the previous examples you saw just a single string or an array as a parameter passed to the middleware. For simplicity, in this case this will be interpreted as a 'allowIP'-parameter. Explicitly specifying a 'allowIP'-parameter would be the 'correct' and more readable way:
 
 ```js
 app.use(ipGeo({
-  whiteListIP: ['192.168.0.*', '8.8.8.*']
+  allowIP: ['192.168.0.*', '8.8.8.*']
 }));
 ```
 
-##### Blacklist IP adresses example
+##### Block IP adresses example
 
 ```js
 app.use(ipGeo({
-  blackListIP: ['8.8.8.*', '1.80.*'],
+  blockIP: ['8.8.8.*', '1.80.*'],
 }));
 ```
 
-##### Whitelist countries
+##### Allow countries
 
 In order to determine country origin, we need also to specify the geoDB database:
 
 ```js
 app.use(ipGeo({
   geoDB: 'path/to/geodb.mmdb',
-  whiteListCountry: ['US', 'UK', 'DE', 'AT']
+  allowCountry: ['US', 'UK', 'DE', 'AT']
 }));
 ```
 
 >**Notes:**
 > The geoDB database will only be loaded if necessary. So if you specify a database but do not filter by country or continent, the database will not be loaded.
 
-##### Blacklist countries
+##### Block countries
 
 ```js
 app.use(ipGeo({
   geoDB: 'path/to/geodb.mmdb',
-  blackListCountry: ['CN', 'RU']
+  blockCountry: ['CN', 'RU']
 }));
 ```
 
-##### Whitelist continents
+##### Allow continents
 
 ```js
 app.use(ipGeo({
   geoDB: 'path/to/geodb.mmdb',
-  whiteListContinent: ['NA', 'EU']
+  allowContinent: ['NA', 'EU']
 }));
 ```
 
-##### Blacklist continents
+##### Block continents
 
 ```js
 app.use(ipGeo({
   geoDB: 'path/to/geodb.mmdb',
-  blackListContinent: ['AS']
+  blockContinent: ['AS']
 }));
 ```
 
@@ -137,7 +137,7 @@ If you need Geo-IP data later in your koa context (ctx. ...), just set the 'cont
 ```js
 app.use(ipGeo({
   geoDB: 'path/to/geodb.mmdb',
-  whiteListCountry: ['US', 'UK', 'DE', 'AT'],
+  allowCountry: ['US', 'UK', 'DE', 'AT'],
   context: true
 }));
 
@@ -158,9 +158,9 @@ app.use(ipGeo({
 
 ```js
 app.use(ipGeo({
-  blackListIP: ['8.8.8.*'],
+  blockIP: ['8.8.8.*'],
   geoDB: 'path/to/geodb.mmdb',
-  whiteListCountry: ['UK', 'US', 'FR', 'DE', 'AT'],
+  allowCountry: ['UK', 'US', 'FR', 'DE', 'AT'],
   forbidden: '403 - Custom Forbidden Message',
   development: (process.env.NODE_ENV === 'Development')
 }));
@@ -177,7 +177,7 @@ forbidden = async function (ctx, next) {
 }
 
 app.use(ipGeo({
-  whiteListIP: '192.168.0.*',
+  allowIP: '192.168.0.*',
   forbidden: forbidden
 }))
 ```
@@ -195,12 +195,12 @@ app.use(ipGeo({
 | option         | Description | Example |
 | -------------- | --------------------- | ---------------------- |
 | geoDB | path to GeoLite2 database | 'GeoLite2-City.mmdb' |
-| whiteListIP | Array of IP addresses (or space separated string) | ['192.168.0.*', '8.8.8.[0-3]'] |
-| blackListIP | Array of IP addresses (or space separated string) | ['8.8.8.*', '1.80.*'] |
-| whiteListCountry | Array of [ISO 3166-2 country code][iso3166-2-url] (or space separated string) | ['US', 'AT'] |
-| blackListCountry | Array of [ISO 3166-2 country code][iso3166-2-url] (or space separated string) | ['CN', 'RU'] |
-| whiteListContinent | Array of continent code (or space separated string) | ['EU', 'NA'] |
-| blackListContinent | Array of continent code (or space separated string) | ['AS', 'OC', 'AF'] |
+| allowIP | Array of IP addresses (or space separated string) | ['192.168.0.*', '8.8.8.[0-3]'] |
+| blockIP | Array of IP addresses (or space separated string) | ['8.8.8.*', '1.80.*'] |
+| allowCountry | Array of [ISO 3166-2 country code][iso3166-2-url] (or space separated string) | ['US', 'AT'] |
+| blockCountry | Array of [ISO 3166-2 country code][iso3166-2-url] (or space separated string) | ['CN', 'RU'] |
+| allowContinent | Array of continent code (or space separated string) | ['EU', 'NA'] |
+| blockContinent | Array of continent code (or space separated string) | ['AS', 'OC', 'AF'] |
 | forbidden | custom 'forbidden' message (string or function) | '403 - Forbidden' |
 | context | set true, if you need geoIP information in the context | defaults to false |
 | development | if true, no filztering is done | defaults to false |
@@ -236,6 +236,7 @@ Please use the [ISO 3166-2 country code][iso3166-2-url] like 'US', 'UK', ....
 
 | Version        | Date           | Comment  |
 | -------------- | -------------- | -------- |
+| 2.2.0          | 2020-06-17     | interface adaption allow/block (preserving backwards compatibility) |
 | 2.1.2          | 2019-02-23     | typescript definitions adapted |
 | 2.1.1          | 2019-02-22     | typescript definitions modification |
 | 2.1.0          | 2019-02-22     | added typescript definitions |
@@ -246,7 +247,7 @@ Please use the [ISO 3166-2 country code][iso3166-2-url] like 'US', 'UK', ....
 | 2.0.0          | 2017-11-20     | made for Koa2, version bump, updated dependencies |
 | 1.2.1          | 2015-09-25     | udated README, more examples, typos, ... |
 | 1.2.0          | 2015-09-23     | now also space separated string possible |
-| 1.1.2          | 2015-09-19     | updated DOCs - whileListIP, examples, typos |
+| 1.1.2          | 2015-09-19     | updated DOCs - whiteListIP, examples, typos |
 | 1.1.0          | 2015-09-19     | added geoIP data to koa context (as an option) |
 | 1.0.0          | 2015-09-18     | initial release |
 
@@ -256,11 +257,11 @@ This new version is now for Koa2! So this means, this version is a breaking chan
 
 #### Changes Version 1.2.0
 
-- you can now pass arrays as well as space separated strings to each whitelist/blacklist:
+- you can now pass arrays as well as space separated strings to each allow/block:
 
 ```js
 app.use(ipGeo({
-  blackListIP: ['192.168.0.*', '8.8.8.*']
+  blockIP: ['192.168.0.*', '8.8.8.*']
 }));
 ```
 
@@ -268,7 +269,7 @@ is now the same as
 
 ```js
 app.use(ipGeo({
-  blackListIP: '192.168.0.* 8.8.8.*'
+  blockIP: '192.168.0.* 8.8.8.*'
 }));
 ```
 
@@ -276,11 +277,11 @@ app.use(ipGeo({
 
 ```js
 app.use(ipGeo({
-  whiteListIP: 'localhost'
+  allowIP: 'localhost'
 }));
 ```
 
-will whitelist `127.0.0.1` and `::1` and vice versa.
+will allow `127.0.0.1` and `::1` and vice versa.
 
 
 ## Comments
