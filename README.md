@@ -258,6 +258,7 @@ Please use the [ISO 3166-2 country code][iso3166-2-url] like 'US', 'UK', ....
 
 | Version        | Date           | Comment  |
 | -------------- | -------------- | -------- |
+| 2.3.1          | 2020-10-04     | bugfix ip handling |
 | 2.3.0          | 2020-10-04     | now also support for ip2location databases |
 | 2.2.0          | 2020-06-17     | interface adaption allow/block (preserving backwards compatibility) |
 | 2.1.2          | 2019-02-23     | typescript definitions adapted |
