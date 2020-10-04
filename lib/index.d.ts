@@ -5,6 +5,7 @@
 export namespace KoaIpGeo {
   interface Configuration {
     geoDB?: string;
+    geoDBtype?: string;
     allowIP?: string | Array<string>;
     blockIP?: string | Array<string>;
     allowCountry?: string;

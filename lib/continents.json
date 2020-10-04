@@ -1,0 +1,1018 @@
+{
+    "AF": {
+        "continent_short": "AS",
+        "continent_long": "Asia"
+    },
+    "AL": {
+        "continent_short": "EU",
+        "continent_long": "Europe"
+    },
+    "AQ": {
+        "continent_short": "AN",
+        "continent_long": "Antarctica"
+    },
+    "DZ": {
+        "continent_short": "AF",
+        "continent_long": "Africa"
+    },
+    "AS": {
+        "continent_short": "OC",
+        "continent_long": "Oceania"
+    },
+    "AD": {
+        "continent_short": "EU",
+        "continent_long": "Europe"
+    },
+    "AO": {
+        "continent_short": "AF",
+        "continent_long": "Africa"
+    },
+    "AG": {
+        "continent_short": "NA",
+        "continent_long": "North America"
+    },
+    "AZ": {
+        "continent_short": "AS",
+        "continent_long": "Asia"
+    },
+    "AR": {
+        "continent_short": "SA",
+        "continent_long": "South America"
+    },
+    "AU": {
+        "continent_short": "OC",
+        "continent_long": "Oceania"
+    },
+    "AT": {
+        "continent_short": "EU",
+        "continent_long": "Europe"
+    },
+    "BS": {
+        "continent_short": "NA",
+        "continent_long": "North America"
+    },
+    "BH": {
+        "continent_short": "AS",
+        "continent_long": "Asia"
+    },
+    "BD": {
+        "continent_short": "AS",
+        "continent_long": "Asia"
+    },
+    "AM": {
+        "continent_short": "EU",
+        "continent_long": "Europe"
+    },
+    "BB": {
+        "continent_short": "NA",
+        "continent_long": "North America"
+    },
+    "BE": {
+        "continent_short": "EU",
+        "continent_long": "Europe"
+    },
+    "BM": {
+        "continent_short": "NA",
+        "continent_long": "North America"
+    },
+    "BT": {
+        "continent_short": "AS",
+        "continent_long": "Asia"
+    },
+    "BO": {
+        "continent_short": "SA",
+        "continent_long": "South America"
+    },
+    "BA": {
+        "continent_short": "EU",
+        "continent_long": "Europe"
+    },
+    "BW": {
+        "continent_short": "AF",
+        "continent_long": "Africa"
+    },
+    "BV": {
+        "continent_short": "AN",
+        "continent_long": "Antarctica"
+    },
+    "BR": {
+        "continent_short": "SA",
+        "continent_long": "South America"
+    },
+    "BZ": {
+        "continent_short": "NA",
+        "continent_long": "North America"
+    },
+    "IO": {
+        "continent_short": "AS",
+        "continent_long": "Asia"
+    },
+    "SB": {
+        "continent_short": "OC",
+        "continent_long": "Oceania"
+    },
+    "VG": {
+        "continent_short": "NA",
+        "continent_long": "North America"
+    },
+    "BN": {
+        "continent_short": "AS",
+        "continent_long": "Asia"
+    },
+    "BG": {
+        "continent_short": "EU",
+        "continent_long": "Europe"
+    },
+    "MM": {
+        "continent_short": "AS",
+        "continent_long": "Asia"
+    },
+    "BI": {
+        "continent_short": "AF",
+        "continent_long": "Africa"
+    },
+    "BY": {
+        "continent_short": "EU",
+        "continent_long": "Europe"
+    },
+    "KH": {
+        "continent_short": "AS",
+        "continent_long": "Asia"
+    },
+    "CM": {
+        "continent_short": "AF",
+        "continent_long": "Africa"
+    },
+    "CA": {
+        "continent_short": "NA",
+        "continent_long": "North America"
+    },
+    "CV": {
+        "continent_short": "AF",
+        "continent_long": "Africa"
+    },
+    "KY": {
+        "continent_short": "NA",
+        "continent_long": "North America"
+    },
+    "CF": {
+        "continent_short": "AF",
+        "continent_long": "Africa"
+    },
+    "LK": {
+        "continent_short": "AS",
+        "continent_long": "Asia"
+    },
+    "TD": {
+        "continent_short": "AF",
+        "continent_long": "Africa"
+    },
+    "CL": {
+        "continent_short": "SA",
+        "continent_long": "South America"
+    },
+    "CN": {
+        "continent_short": "AS",
+        "continent_long": "Asia"
+    },
+    "TW": {
+        "continent_short": "AS",
+        "continent_long": "Asia"
+    },
+    "CX": {
+        "continent_short": "AS",
+        "continent_long": "Asia"
+    },
+    "CC": {
+        "continent_short": "AS",
+        "continent_long": "Asia"
+    },
+    "CO": {
+        "continent_short": "SA",
+        "continent_long": "South America"
+    },
+    "KM": {
+        "continent_short": "AF",
+        "continent_long": "Africa"
+    },
+    "YT": {
+        "continent_short": "AF",
+        "continent_long": "Africa"
+    },
+    "CG": {
+        "continent_short": "AF",
+        "continent_long": "Africa"
+    },
+    "CD": {
+        "continent_short": "AF",
+        "continent_long": "Africa"
+    },
+    "CK": {
+        "continent_short": "OC",
+        "continent_long": "Oceania"
+    },
+    "CR": {
+        "continent_short": "NA",
+        "continent_long": "North America"
+    },
+    "HR": {
+        "continent_short": "EU",
+        "continent_long": "Europe"
+    },
+    "CU": {
+        "continent_short": "NA",
+        "continent_long": "North America"
+    },
+    "CY": {
+        "continent_short": "EU",
+        "continent_long": "Europe"
+    },
+    "CZ": {
+        "continent_short": "EU",
+        "continent_long": "Europe"
+    },
+    "BJ": {
+        "continent_short": "AF",
+        "continent_long": "Africa"
+    },
+    "DK": {
+        "continent_short": "EU",
+        "continent_long": "Europe"
+    },
+    "DM": {
+        "continent_short": "NA",
+        "continent_long": "North America"
+    },
+    "DO": {
+        "continent_short": "NA",
+        "continent_long": "North America"
+    },
+    "EC": {
+        "continent_short": "SA",
+        "continent_long": "South America"
+    },
+    "SV": {
+        "continent_short": "NA",
+        "continent_long": "North America"
+    },
+    "GQ": {
+        "continent_short": "AF",
+        "continent_long": "Africa"
+    },
+    "ET": {
+        "continent_short": "AF",
+        "continent_long": "Africa"
+    },
+    "ER": {
+        "continent_short": "AF",
+        "continent_long": "Africa"
+    },
+    "EE": {
+        "continent_short": "EU",
+        "continent_long": "Europe"
+    },
+    "FO": {
+        "continent_short": "EU",
+        "continent_long": "Europe"
+    },
+    "FK": {
+        "continent_short": "SA",
+        "continent_long": "South America"
+    },
+    "GS": {
+        "continent_short": "AN",
+        "continent_long": "Antarctica"
+    },
+    "FJ": {
+        "continent_short": "OC",
+        "continent_long": "Oceania"
+    },
+    "FI": {
+        "continent_short": "EU",
+        "continent_long": "Europe"
+    },
+    "AX": {
+        "continent_short": "EU",
+        "continent_long": "Europe"
+    },
+    "FR": {
+        "continent_short": "EU",
+        "continent_long": "Europe"
+    },
+    "GF": {
+        "continent_short": "SA",
+        "continent_long": "South America"
+    },
+    "PF": {
+        "continent_short": "OC",
+        "continent_long": "Oceania"
+    },
+    "TF": {
+        "continent_short": "AN",
+        "continent_long": "Antarctica"
+    },
+    "DJ": {
+        "continent_short": "AF",
+        "continent_long": "Africa"
+    },
+    "GA": {
+        "continent_short": "AF",
+        "continent_long": "Africa"
+    },
+    "GE": {
+        "continent_short": "AS",
+        "continent_long": "Asia"
+    },
+    "GM": {
+        "continent_short": "AF",
+        "continent_long": "Africa"
+    },
+    "PS": {
+        "continent_short": "AS",
+        "continent_long": "Asia"
+    },
+    "DE": {
+        "continent_short": "EU",
+        "continent_long": "Europe"
+    },
+    "GH": {
+        "continent_short": "AF",
+        "continent_long": "Africa"
+    },
+    "GI": {
+        "continent_short": "EU",
+        "continent_long": "Europe"
+    },
+    "KI": {
+        "continent_short": "OC",
+        "continent_long": "Oceania"
+    },
+    "GR": {
+        "continent_short": "EU",
+        "continent_long": "Europe"
+    },
+    "GL": {
+        "continent_short": "NA",
+        "continent_long": "North America"
+    },
+    "GD": {
+        "continent_short": "NA",
+        "continent_long": "North America"
+    },
+    "GP": {
+        "continent_short": "NA",
+        "continent_long": "North America"
+    },
+    "GU": {
+        "continent_short": "OC",
+        "continent_long": "Oceania"
+    },
+    "GT": {
+        "continent_short": "NA",
+        "continent_long": "North America"
+    },
+    "GN": {
+        "continent_short": "AF",
+        "continent_long": "Africa"
+    },
+    "GY": {
+        "continent_short": "SA",
+        "continent_long": "South America"
+    },
+    "HT": {
+        "continent_short": "NA",
+        "continent_long": "North America"
+    },
+    "HM": {
+        "continent_short": "AN",
+        "continent_long": "Antarctica"
+    },
+    "VA": {
+        "continent_short": "EU",
+        "continent_long": "Europe"
+    },
+    "HN": {
+        "continent_short": "NA",
+        "continent_long": "North America"
+    },
+    "HK": {
+        "continent_short": "AS",
+        "continent_long": "Asia"
+    },
+    "HU": {
+        "continent_short": "EU",
+        "continent_long": "Europe"
+    },
+    "IS": {
+        "continent_short": "EU",
+        "continent_long": "Europe"
+    },
+    "IN": {
+        "continent_short": "AS",
+        "continent_long": "Asia"
+    },
+    "ID": {
+        "continent_short": "AS",
+        "continent_long": "Asia"
+    },
+    "IR": {
+        "continent_short": "AS",
+        "continent_long": "Asia"
+    },
+    "IQ": {
+        "continent_short": "AS",
+        "continent_long": "Asia"
+    },
+    "IE": {
+        "continent_short": "EU",
+        "continent_long": "Europe"
+    },
+    "IL": {
+        "continent_short": "AS",
+        "continent_long": "Asia"
+    },
+    "IT": {
+        "continent_short": "EU",
+        "continent_long": "Europe"
+    },
+    "CI": {
+        "continent_short": "AF",
+        "continent_long": "Africa"
+    },
+    "JM": {
+        "continent_short": "NA",
+        "continent_long": "North America"
+    },
+    "JP": {
+        "continent_short": "AS",
+        "continent_long": "Asia"
+    },
+    "KZ": {
+        "continent_short": "EU",
+        "continent_long": "Europe"
+    },
+    "JO": {
+        "continent_short": "AS",
+        "continent_long": "Asia"
+    },
+    "KE": {
+        "continent_short": "AF",
+        "continent_long": "Africa"
+    },
+    "KP": {
+        "continent_short": "AS",
+        "continent_long": "Asia"
+    },
+    "KR": {
+        "continent_short": "AS",
+        "continent_long": "Asia"
+    },
+    "KW": {
+        "continent_short": "AS",
+        "continent_long": "Asia"
+    },
+    "KG": {
+        "continent_short": "AS",
+        "continent_long": "Asia"
+    },
+    "LA": {
+        "continent_short": "AS",
+        "continent_long": "Asia"
+    },
+    "LB": {
+        "continent_short": "AS",
+        "continent_long": "Asia"
+    },
+    "LS": {
+        "continent_short": "AF",
+        "continent_long": "Africa"
+    },
+    "LV": {
+        "continent_short": "EU",
+        "continent_long": "Europe"
+    },
+    "LR": {
+        "continent_short": "AF",
+        "continent_long": "Africa"
+    },
+    "LY": {
+        "continent_short": "AF",
+        "continent_long": "Africa"
+    },
+    "LI": {
+        "continent_short": "EU",
+        "continent_long": "Europe"
+    },
+    "LT": {
+        "continent_short": "EU",
+        "continent_long": "Europe"
+    },
+    "LU": {
+        "continent_short": "EU",
+        "continent_long": "Europe"
+    },
+    "MO": {
+        "continent_short": "AS",
+        "continent_long": "Asia"
+    },
+    "MG": {
+        "continent_short": "AF",
+        "continent_long": "Africa"
+    },
+    "MW": {
+        "continent_short": "AF",
+        "continent_long": "Africa"
+    },
+    "MY": {
+        "continent_short": "AS",
+        "continent_long": "Asia"
+    },
+    "MV": {
+        "continent_short": "AS",
+        "continent_long": "Asia"
+    },
+    "ML": {
+        "continent_short": "AF",
+        "continent_long": "Africa"
+    },
+    "MT": {
+        "continent_short": "EU",
+        "continent_long": "Europe"
+    },
+    "MQ": {
+        "continent_short": "NA",
+        "continent_long": "North America"
+    },
+    "MR": {
+        "continent_short": "AF",
+        "continent_long": "Africa"
+    },
+    "MU": {
+        "continent_short": "AF",
+        "continent_long": "Africa"
+    },
+    "MX": {
+        "continent_short": "NA",
+        "continent_long": "North America"
+    },
+    "MC": {
+        "continent_short": "EU",
+        "continent_long": "Europe"
+    },
+    "MN": {
+        "continent_short": "AS",
+        "continent_long": "Asia"
+    },
+    "MD": {
+        "continent_short": "EU",
+        "continent_long": "Europe"
+    },
+    "ME": {
+        "continent_short": "EU",
+        "continent_long": "Europe"
+    },
+    "MS": {
+        "continent_short": "NA",
+        "continent_long": "North America"
+    },
+    "MA": {
+        "continent_short": "AF",
+        "continent_long": "Africa"
+    },
+    "MZ": {
+        "continent_short": "AF",
+        "continent_long": "Africa"
+    },
+    "OM": {
+        "continent_short": "AS",
+        "continent_long": "Asia"
+    },
+    "NA": {
+        "continent_short": "AF",
+        "continent_long": "Africa"
+    },
+    "NR": {
+        "continent_short": "OC",
+        "continent_long": "Oceania"
+    },
+    "NP": {
+        "continent_short": "AS",
+        "continent_long": "Asia"
+    },
+    "NL": {
+        "continent_short": "EU",
+        "continent_long": "Europe"
+    },
+    "AN": {
+        "continent_short": "NA",
+        "continent_long": "North America"
+    },
+    "CW": {
+        "continent_short": "NA",
+        "continent_long": "North America"
+    },
+    "AW": {
+        "continent_short": "NA",
+        "continent_long": "North America"
+    },
+    "SX": {
+        "continent_short": "NA",
+        "continent_long": "North America"
+    },
+    "BQ": {
+        "continent_short": "NA",
+        "continent_long": "North America"
+    },
+    "NC": {
+        "continent_short": "OC",
+        "continent_long": "Oceania"
+    },
+    "VU": {
+        "continent_short": "OC",
+        "continent_long": "Oceania"
+    },
+    "NZ": {
+        "continent_short": "OC",
+        "continent_long": "Oceania"
+    },
+    "NI": {
+        "continent_short": "NA",
+        "continent_long": "North America"
+    },
+    "NE": {
+        "continent_short": "AF",
+        "continent_long": "Africa"
+    },
+    "NG": {
+        "continent_short": "AF",
+        "continent_long": "Africa"
+    },
+    "NU": {
+        "continent_short": "OC",
+        "continent_long": "Oceania"
+    },
+    "NF": {
+        "continent_short": "OC",
+        "continent_long": "Oceania"
+    },
+    "NO": {
+        "continent_short": "EU",
+        "continent_long": "Europe"
+    },
+    "MP": {
+        "continent_short": "OC",
+        "continent_long": "Oceania"
+    },
+    "UM": {
+        "continent_short": "OC",
+        "continent_long": "Oceania"
+    },
+    "FM": {
+        "continent_short": "OC",
+        "continent_long": "Oceania"
+    },
+    "MH": {
+        "continent_short": "OC",
+        "continent_long": "Oceania"
+    },
+    "PW": {
+        "continent_short": "OC",
+        "continent_long": "Oceania"
+    },
+    "PK": {
+        "continent_short": "AS",
+        "continent_long": "Asia"
+    },
+    "PA": {
+        "continent_short": "NA",
+        "continent_long": "North America"
+    },
+    "PG": {
+        "continent_short": "OC",
+        "continent_long": "Oceania"
+    },
+    "PY": {
+        "continent_short": "SA",
+        "continent_long": "South America"
+    },
+    "PE": {
+        "continent_short": "SA",
+        "continent_long": "South America"
+    },
+    "PH": {
+        "continent_short": "AS",
+        "continent_long": "Asia"
+    },
+    "PN": {
+        "continent_short": "OC",
+        "continent_long": "Oceania"
+    },
+    "PL": {
+        "continent_short": "EU",
+        "continent_long": "Europe"
+    },
+    "PT": {
+        "continent_short": "EU",
+        "continent_long": "Europe"
+    },
+    "GW": {
+        "continent_short": "AF",
+        "continent_long": "Africa"
+    },
+    "TL": {
+        "continent_short": "AS",
+        "continent_long": "Asia"
+    },
+    "PR": {
+        "continent_short": "NA",
+        "continent_long": "North America"
+    },
+    "QA": {
+        "continent_short": "AS",
+        "continent_long": "Asia"
+    },
+    "RE": {
+        "continent_short": "AF",
+        "continent_long": "Africa"
+    },
+    "RO": {
+        "continent_short": "EU",
+        "continent_long": "Europe"
+    },
+    "RU": {
+        "continent_short": "AS",
+        "continent_long": "Asia"
+    },
+    "RW": {
+        "continent_short": "AF",
+        "continent_long": "Africa"
+    },
+    "BL": {
+        "continent_short": "NA",
+        "continent_long": "North America"
+    },
+    "SH": {
+        "continent_short": "AF",
+        "continent_long": "Africa"
+    },
+    "KN": {
+        "continent_short": "NA",
+        "continent_long": "North America"
+    },
+    "AI": {
+        "continent_short": "NA",
+        "continent_long": "North America"
+    },
+    "LC": {
+        "continent_short": "NA",
+        "continent_long": "North America"
+    },
+    "MF": {
+        "continent_short": "NA",
+        "continent_long": "North America"
+    },
+    "PM": {
+        "continent_short": "NA",
+        "continent_long": "North America"
+    },
+    "VC": {
+        "continent_short": "NA",
+        "continent_long": "North America"
+    },
+    "SM": {
+        "continent_short": "EU",
+        "continent_long": "Europe"
+    },
+    "ST": {
+        "continent_short": "AF",
+        "continent_long": "Africa"
+    },
+    "SA": {
+        "continent_short": "AS",
+        "continent_long": "Asia"
+    },
+    "SN": {
+        "continent_short": "AF",
+        "continent_long": "Africa"
+    },
+    "RS": {
+        "continent_short": "EU",
+        "continent_long": "Europe"
+    },
+    "SC": {
+        "continent_short": "AF",
+        "continent_long": "Africa"
+    },
+    "SL": {
+        "continent_short": "AF",
+        "continent_long": "Africa"
+    },
+    "SG": {
+        "continent_short": "AS",
+        "continent_long": "Asia"
+    },
+    "SK": {
+        "continent_short": "EU",
+        "continent_long": "Europe"
+    },
+    "VN": {
+        "continent_short": "AS",
+        "continent_long": "Asia"
+    },
+    "SI": {
+        "continent_short": "EU",
+        "continent_long": "Europe"
+    },
+    "SO": {
+        "continent_short": "AF",
+        "continent_long": "Africa"
+    },
+    "ZA": {
+        "continent_short": "AF",
+        "continent_long": "Africa"
+    },
+    "ZW": {
+        "continent_short": "AF",
+        "continent_long": "Africa"
+    },
+    "ES": {
+        "continent_short": "EU",
+        "continent_long": "Europe"
+    },
+    "SS": {
+        "continent_short": "AF",
+        "continent_long": "Africa"
+    },
+    "EH": {
+        "continent_short": "AF",
+        "continent_long": "Africa"
+    },
+    "SD": {
+        "continent_short": "AF",
+        "continent_long": "Africa"
+    },
+    "SR": {
+        "continent_short": "SA",
+        "continent_long": "South America"
+    },
+    "SJ": {
+        "continent_short": "EU",
+        "continent_long": "Europe"
+    },
+    "SZ": {
+        "continent_short": "AF",
+        "continent_long": "Africa"
+    },
+    "SE": {
+        "continent_short": "EU",
+        "continent_long": "Europe"
+    },
+    "CH": {
+        "continent_short": "EU",
+        "continent_long": "Europe"
+    },
+    "SY": {
+        "continent_short": "AS",
+        "continent_long": "Asia"
+    },
+    "TJ": {
+        "continent_short": "AS",
+        "continent_long": "Asia"
+    },
+    "TH": {
+        "continent_short": "AS",
+        "continent_long": "Asia"
+    },
+    "TG": {
+        "continent_short": "AF",
+        "continent_long": "Africa"
+    },
+    "TK": {
+        "continent_short": "OC",
+        "continent_long": "Oceania"
+    },
+    "TO": {
+        "continent_short": "OC",
+        "continent_long": "Oceania"
+    },
+    "TT": {
+        "continent_short": "NA",
+        "continent_long": "North America"
+    },
+    "AE": {
+        "continent_short": "AS",
+        "continent_long": "Asia"
+    },
+    "TN": {
+        "continent_short": "AF",
+        "continent_long": "Africa"
+    },
+    "TR": {
+        "continent_short": "AS",
+        "continent_long": "Asia"
+    },
+    "TM": {
+        "continent_short": "AS",
+        "continent_long": "Asia"
+    },
+    "TC": {
+        "continent_short": "NA",
+        "continent_long": "North America"
+    },
+    "TV": {
+        "continent_short": "OC",
+        "continent_long": "Oceania"
+    },
+    "UG": {
+        "continent_short": "AF",
+        "continent_long": "Africa"
+    },
+    "UA": {
+        "continent_short": "EU",
+        "continent_long": "Europe"
+    },
+    "MK": {
+        "continent_short": "EU",
+        "continent_long": "Europe"
+    },
+    "EG": {
+        "continent_short": "AF",
+        "continent_long": "Africa"
+    },
+    "GB": {
+        "continent_short": "EU",
+        "continent_long": "Europe"
+    },
+    "GG": {
+        "continent_short": "EU",
+        "continent_long": "Europe"
+    },
+    "JE": {
+        "continent_short": "EU",
+        "continent_long": "Europe"
+    },
+    "IM": {
+        "continent_short": "EU",
+        "continent_long": "Europe"
+    },
+    "TZ": {
+        "continent_short": "AF",
+        "continent_long": "Africa"
+    },
+    "US": {
+        "continent_short": "NA",
+        "continent_long": "North America"
+    },
+    "VI": {
+        "continent_short": "NA",
+        "continent_long": "North America"
+    },
+    "BF": {
+        "continent_short": "AF",
+        "continent_long": "Africa"
+    },
+    "UY": {
+        "continent_short": "SA",
+        "continent_long": "South America"
+    },
+    "UZ": {
+        "continent_short": "AS",
+        "continent_long": "Asia"
+    },
+    "VE": {
+        "continent_short": "SA",
+        "continent_long": "South America"
+    },
+    "WF": {
+        "continent_short": "OC",
+        "continent_long": "Oceania"
+    },
+    "WS": {
+        "continent_short": "OC",
+        "continent_long": "Oceania"
+    },
+    "YE": {
+        "continent_short": "AS",
+        "continent_long": "Asia"
+    },
+    "ZM": {
+        "continent_short": "AF",
+        "continent_long": "Africa"
+    },
+    "XX": {
+        "continent_short": "OC",
+        "continent_long": "Oceania"
+    },
+    "XE": {
+        "continent_short": "AS",
+        "continent_long": "Asia"
+    },
+    "XD": {
+        "continent_short": "AS",
+        "continent_long": "Asia"
+    },
+    "XS": {
+        "continent_short": "AS",
+        "continent_long": "Asia"
+    }
+}

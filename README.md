@@ -29,6 +29,9 @@ $ npm install koa-ip-geo --save
 
 You also need the **Maxmind GeoLite2 Free Database** (city or country). We recommend the 'country' version, because it is smaller. [Check their website to get the database][geodb-url].
 
+Alternatively you can now also use **ip2location Databases** (city or country). We recommend the 'country' version, because it is smaller. [Check their website to get the database][ip2location-url].
+
+
 ### Basic Usage
 
 This example has a allow for local IP addresses and a allow for Austrian IP addresses:
@@ -39,8 +42,25 @@ const ipGeo = require('koa-ip-geo');
 
 const app = new Koa();
 
+// if you are using maxminds geo ip database
 app.use(ipGeo({
   geoDB: 'path/to/geodb.mmdb',
+  getDBtype: 'maxmind',
+  allowIP: '192.168.0.*',
+  allowCountry: ['AT']
+}));
+
+app.use(...);
+app.listen(3000);
+```
+
+If you waht to use the ip2location database instead, please change the config to:
+
+```js
+// using ip2location database
+app.use(ipGeo({
+  geoDB: 'path/to/ip2location.bin',
+  getDBtype: 'ip2location',
   allowIP: '192.168.0.*',
   allowCountry: ['AT']
 }));
@@ -185,6 +205,7 @@ app.use(ipGeo({
 ### GeoLite2 Database
 
 > This middleware works with **Maxmind GeoLite2 Free Database** (city or country). We recommend the 'country' version, because it is smaller. [Check their website to get the database][geodb-url].
+> Alternatively you now can also use **ip2location Lite Databases** (city or country). We recommend the 'country' version, because it is smaller. [Check their website to get the database][ip2location-url].
 >
 > `koa-ip-geo` loads the entire database file into memory as a single node `Buffer`. It also uses an in-memory cache when reading complex data structures out of this buffer in the interests of performance. So very roughly speaking, you should assume this module will consume `size_of_mmdb_file * 1.25` of memory.
 
@@ -194,7 +215,8 @@ app.use(ipGeo({
 
 | option         | Description | Example |
 | -------------- | --------------------- | ---------------------- |
-| geoDB | path to GeoLite2 database | 'GeoLite2-City.mmdb' |
+| geoDB | path to maxmind or ip2location database | 'GeoLite2-City.mmdb' |
+| geoDBtype | 'maxmind' or 'ip2location' - defaults to maxmind | 'maxmind' |
 | allowIP | Array of IP addresses (or space separated string) | ['192.168.0.*', '8.8.8.[0-3]'] |
 | blockIP | Array of IP addresses (or space separated string) | ['8.8.8.*', '1.80.*'] |
 | allowCountry | Array of [ISO 3166-2 country code][iso3166-2-url] (or space separated string) | ['US', 'AT'] |
@@ -236,6 +258,7 @@ Please use the [ISO 3166-2 country code][iso3166-2-url] like 'US', 'UK', ....
 
 | Version        | Date           | Comment  |
 | -------------- | -------------- | -------- |
+| 2.3.0          | 2020-10-04     | now also support for ip2location databases |
 | 2.2.0          | 2020-06-17     | interface adaption allow/block (preserving backwards compatibility) |
 | 2.1.2          | 2019-02-23     | typescript definitions adapted |
 | 2.1.1          | 2019-02-22     | typescript definitions modification |
@@ -302,7 +325,7 @@ This package is heavenly inspired by [koa-ip][koaip-url] and [koa-ip-filter][koa
 
 >The [`MIT`][license-url] License (MIT)
 >
->Copyright &copy; 2018 Sebastian Hildebrandt, [+innovations](http://www.plus-innovations.com).
+>Copyright &copy; 2018-2020 Sebastian Hildebrandt, [+innovations](http://www.plus-innovations.com).
 >
 >Permission is hereby granted, free of charge, to any person obtaining a copy
 >of this software and associated documentation files (the "Software"), to deal
@@ -335,6 +358,7 @@ This package is heavenly inspired by [koa-ip][koaip-url] and [koa-ip-filter][koa
 [koa-url]: https://github.com/koajs/koa
 [iso3166-2-url]: https://en.wikipedia.org/wiki/ISO_3166-2
 [geodb-url]: https://dev.maxmind.com/geoip/geoip2/geolite2/
+[ip2location-url]: https://lite.ip2location.com/database/ip-country/
 [koaip-url]: https://github.com/MangroveTech/koa-ip
 [koaipfilter-url]: https://github.com/tunnckoCore/koa-ip-filter
 

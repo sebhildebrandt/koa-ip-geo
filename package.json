@@ -30,8 +30,9 @@
     "middleware"
   ],
   "dependencies": {
-    "debug": "^4.1.0",
-    "mmdb-reader": "^1.2.0"
+    "debug": "^4.2.0",
+    "mmdb-reader": "^1.2.0",
+    "ip2location-nodejs": "^8.4.0"
   },
   "engines": {
     "node": ">=7.6.0"
